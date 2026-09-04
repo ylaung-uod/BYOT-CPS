@@ -107,6 +107,13 @@ same release commit:
 7. the release commit has a clean working tree; and
 8. an annotated `v1.0.0` tag points to that verified commit.
 
-Do not create or publish the tag while any item is missing. Record the hosted
-run URL, local command results, live-test outcome, archive result, and remaining
-interactive limitations in `docs/RELEASE-NOTES-v1.0.0.md`.
+Do not create or publish the tag while any item is missing. Record the local
+command results, live-test outcome, archive result, and remaining interactive
+limitations in `docs/RELEASE-NOTES-v1.0.0.md`. Record the exact release commit
+and hosted run URL in the GitHub release record so adding the URL does not alter
+the commit that CI verified.
+
+While the repository is private, anonymous link checking excludes the
+self-referential v1.0.0 release URL. At release creation, verify the tag, target
+commit, publication state, and release URL directly through the GitHub API
+before changing repository visibility.

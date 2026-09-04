@@ -19,7 +19,7 @@ class PhaseTwoPortabilityTests(unittest.TestCase):
             check=True,
             capture_output=True,
         ).stdout.split(b"\0")
-        forbidden_literals = (b"/home/" + b"yll", b"Resrc_" + b"Hermes")
+        forbidden_literals = (b"/home/" + b"yll", b"Res" + b"rc_")
         timestamped_private_name = re.compile(
             rb"[A-Za-z0-9._-]+-20[0-9]{12,}\.(?:xml|conf|json)"
         )

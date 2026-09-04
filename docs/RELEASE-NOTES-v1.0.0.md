@@ -39,21 +39,21 @@ started QEMU process alone does not prove installation or configuration restore.
 ## Verification results
 
 On 2026-09-04, the staged v1.0.0 candidate passed `make release-check` with
-91 unit tests, syntax and static analysis, secret and Dockerfile scans, both
+95 unit tests, syntax and static analysis, secret and Dockerfile scans, both
 container builds, deterministic SBOM comparison, runtime policy assertions, and
-inspection of all 71 source-archive files. The first external-link attempt
-encountered three vendor-site timeouts; an unchanged retry passed all 44 links.
+inspection of all 71 source-archive files. While the repository is private, the
+self-referential v1.0.0 release URL is excluded from anonymous link checking and
+is instead verified through the GitHub API when the release is created. The
+remaining 46 links passed.
 
 The same candidate passed `IOT_INTERFACE=docker0 make live-release-check` for
 compromised-IoT counts 0, 1, 3, and 10. Every temporary project was read back,
-started, deleted, and confirmed absent. The Phase 6 hosted baseline passed both
-jobs at <https://github.com/ylaung-uod/byot-cps/actions/runs/33817058239>.
-Exact-commit hosted CI and a clean-clone check remain mandatory before tagging;
-their resulting URLs and commit identifier belong in the GitHub release record.
+started, deleted, and confirmed absent. Exact-commit hosted CI and a clean-clone
+check remain mandatory before tagging. The hosted run URL and verified commit
+identifier belong in the GitHub release record.
 
-## Commit attribution
+## Repository history
 
-The existing history is preserved rather than rewritten. Its commits are
-attributed to `Hermes Agent <hermes-agent@localhost>`. This attribution is
-accepted for the public v1.0.0 history; future contributors should use their own
-configured Git identity.
+The public repository begins with a single root snapshot rather than the prior
+development history. Contributors should use their own configured public Git
+identity.

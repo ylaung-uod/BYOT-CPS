@@ -2,12 +2,13 @@ name: Public quality gates
 
 on:
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number }}
+  group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -15,10 +16,10 @@ jobs:
     name: Static, policy, and unit gates
     runs-on: ubuntu-24.04
     steps:
-      - name: Check out the pull request
+      - name: Check out the verified revision
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
           fetch-depth: 0
       - name: Install native test dependencies
@@ -28,6 +29,7 @@ jobs:
       - name: Run repository quality gates
         run: make ci-static
       - name: Check patch whitespace
+        if: github.event_name == 'pull_request'
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
@@ -41,10 +43,10 @@ jobs:
     name: Container build, SBOM, and runtime policy
     runs-on: ubuntu-24.04
     steps:
-      - name: Check out the pull request
+      - name: Check out the verified revision
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - name: Build and test the lab containers
         run: make container-ci

@@ -19,7 +19,7 @@ class PhaseSixQualityGateTests(unittest.TestCase):
         self.assertIn("pull_request:", text)
         self.assertIn("permissions:\n  contents: read", text)
         self.assertEqual(
-            text.count("ref: ${{ github.event.pull_request.head.sha }}"),
+            text.count("ref: ${{ github.event.pull_request.head.sha || github.sha }}"),
             2,
         )
         self.assertEqual(text.count("persist-credentials: false"), 2)

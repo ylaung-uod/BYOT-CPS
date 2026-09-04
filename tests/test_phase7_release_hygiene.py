@@ -1,3 +1,4 @@
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -28,11 +29,10 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             "Dummy credentials",
             "Interactive pfSense installation",
             "Verification results",
-            "Commit attribution",
-            "Hermes Agent <hermes-agent@localhost>",
+            "Repository history",
         ):
             self.assertIn(expected, text)
-        self.assertIn("44 links", text)
+        self.assertIn("46 links", text)
         self.assertNotIn("recorded in its GitHub pull request and release record", text)
 
     def test_release_process_requires_the_phase_seven_final_gate(self):
@@ -42,8 +42,64 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             "release archive",
             "annotated `v1.0.0` tag",
             "verified commit",
+            "GitHub release record",
+            "GitHub API",
         ):
             self.assertIn(expected, checks)
+
+    def test_release_metadata_matches_the_snapshot_repository(self):
+        notes = (ROOT / "docs" / "RELEASE-NOTES-v1.0.0.md").read_text()
+        self.assertIn("95 unit tests", notes)
+        self.assertIn("single root snapshot", notes)
+        identities = subprocess.run(
+            ["git", "log", "--format=%an%x00%ae"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.splitlines()
+        self.assertTrue(identities)
+        for identity in identities:
+            name, email = identity.split("\0", 1)
+            self.assertTrue(name.strip())
+            self.assertIn("@", email)
+            self.assertFalse(email.endswith("@localhost"))
+        self.assertNotIn("91 unit tests", notes)
+        self.assertNotIn("93 unit tests", notes)
+        self.assertNotIn("33817058239", notes)
+        self.assertNotIn("existing history is preserved", notes)
+        self.assertNotIn("Phase 6 hosted baseline", notes)
+
+    def test_hosted_verification_supports_the_release_commit(self):
+        workflow = (ROOT / ".github" / "workflows" / "ci.yml").read_text()
+        self.assertIn("workflow_dispatch:", workflow)
+        self.assertIn("github.event.pull_request.head.sha || github.sha", workflow)
+        self.assertIn("if: github.event_name == 'pull_request'", workflow)
+
+        makefile = (ROOT / "Makefile").read_text()
+        expected_release_url = (
+            "^https://github[.]com/ylaung-uod/byot-cps/releases/tag/v1[.]0[.]0$$"
+        )
+        self.assertEqual(
+            [line for line in makefile.splitlines() if line.startswith("SELF_RELEASE_URL")],
+            [f"SELF_RELEASE_URL ?= {expected_release_url}"],
+        )
+
+        lines = makefile.splitlines()
+        target_index = lines.index("external-link-check:")
+        recipe = []
+        for line in lines[target_index + 1 :]:
+            if not line.startswith("\t"):
+                break
+            recipe.append(line)
+        self.assertEqual(
+            recipe,
+            [
+                "\tdocker run --rm -v \"$(CURDIR):/input:ro\" -w /input "
+                "$(LYCHEE_IMAGE) --no-progress --exclude '$(SELF_RELEASE_URL)' "
+                "'./**/*.md'"
+            ],
+        )
 
     def test_repository_links_the_accompanying_arxiv_paper(self):
         readme = (ROOT / "README.md").read_text()
