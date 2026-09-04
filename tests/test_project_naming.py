@@ -25,7 +25,12 @@ class ProjectNamingTests(unittest.TestCase):
     def test_documentation_and_smoke_project_use_byot_cps_name(self):
         readme = (ROOT / "README.md").read_text()
         smoke_test = (ROOT / "src/smoke_test.py").read_text()
-        self.assertTrue(readme.startswith("# byot-cps"))
+        self.assertTrue(
+            readme.startswith(
+                "# BYOT-CPS: A Hybrid IoT/CPS Security Testbed for "
+                "Experimentation and Platform Evaluation"
+            )
+        )
         self.assertIn('name = "byot-cps-smoke-"', smoke_test)
 
     def test_public_metadata_has_no_developer_home_path(self):

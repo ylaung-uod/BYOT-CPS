@@ -1,4 +1,4 @@
-# byot-cps — reproducible GNS3 topology
+# BYOT-CPS: A Hybrid IoT/CPS Security Testbed for Experimentation and Platform Evaluation
 
 ## Purpose
 
