@@ -37,7 +37,8 @@ This one command runs every local, non-destructive gate: semantic topology and
 data validation, all unit tests, staged and unstaged whitespace checks, local
 and external Markdown links, Python syntax and static analysis, workflow
 linting, secret scanning, Dockerfile linting, source-archive inspection,
-deterministic SBOM comparison, container builds, and runtime policy assertions.
+deterministic reproduction-archive construction, deterministic SBOM comparison,
+container builds, and runtime policy assertions.
 
 The command downloads pinned quality-tool and base-container images when they are
 not already available. It does not create or alter a GNS3 project. Success ends
@@ -49,6 +50,23 @@ RELEASE CHECK: PASSED
 
 Any failed subcommand ends with `RELEASE CHECK: FAILED` and a nonzero status. Do
 not tag or publish that tree.
+
+## Minimal reproduction archive
+
+Build the end-user bundle with:
+
+```bash
+make reproduction-archive
+```
+
+The generated `dist/byot-cps-v1.0.0-reproduction.tar.gz` contains only the
+declared topology and template inputs, runtime builders, required documentation,
+licenses, citation metadata, and SBOMs. It deliberately excludes development
+tests, CI configuration, maintainer quality tools, and release-process records.
+The release test builds it twice to enforce byte reproducibility, checks the
+exact allowlist and embedded `REPRODUCTION-MANIFEST.sha256`, then runs the
+extracted bundle's `make validate` and `make pfsense-config-validate` targets.
+Attach this bundle—not the larger source archive—as the end-user release asset.
 
 ## Live GNS3 maintainer check
 

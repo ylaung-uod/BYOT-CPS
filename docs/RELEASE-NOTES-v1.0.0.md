@@ -41,10 +41,12 @@ started QEMU process alone does not prove installation or configuration restore.
 On 2026-09-04, the staged v1.0.0 candidate passed `make release-check` with
 95 unit tests, syntax and static analysis, secret and Dockerfile scans, both
 container builds, deterministic SBOM comparison, runtime policy assertions, and
-inspection of all 71 source-archive files. While the repository is private, the
-self-referential v1.0.0 release URL is excluded from anonymous link checking and
-is instead verified through the GitHub API when the release is created. The
-remaining 46 links passed.
+inspection of all 74 source-archive files. The deterministic minimal
+reproduction archive contains 43 files required by end users; development tests
+and CI policy remain in the source repository for auditability. While the
+repository is private, the self-referential v1.0.0 release URL is excluded
+from anonymous link checking and is instead verified through the GitHub API when
+the release is created. The remaining 57 links passed.
 
 The same candidate passed `IOT_INTERFACE=docker0 make live-release-check` for
 compromised-IoT counts 0, 1, 3, and 10. Every temporary project was read back,

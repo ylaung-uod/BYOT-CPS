@@ -59,14 +59,22 @@ If yours is elsewhere, pass it explicitly to GNS3-dependent targets:
 make templates GNS3_SERVER_CONFIG=/path/to/gns3_server.conf
 ```
 
-## 3. Enter the repository
+## 3. Enter the source tree
 
 ```bash
 git clone <repository-url> byot-cps
 cd byot-cps
 ```
 
-Confirm that the working tree is clean:
+Alternatively, extract the minimal reproduction archive from the GitHub
+release and enter its `byot-cps-v1.0.0` directory. Verify its contents before
+continuing:
+
+```bash
+sha256sum -c REPRODUCTION-MANIFEST.sha256
+```
+
+For a Git checkout, confirm that the working tree is clean:
 
 ```bash
 git status --short --branch
@@ -356,6 +364,8 @@ Rebuild only the pfSense configuration drive:
 make pfsense-config-drive
 ```
 
+The following specification refresh and unit-test commands are maintainer-only
+and available in the full source repository, not the minimal archive.
 Regenerate the portable topology from the original source project:
 
 ```bash

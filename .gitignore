@@ -3,6 +3,7 @@ __pycache__/
 .state/
 artifacts/
 downloads/
+dist/
 secrets/
 images/*
 !images/README.md

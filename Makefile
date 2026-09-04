@@ -15,8 +15,9 @@ RUFF_IMAGE ?= ghcr.io/astral-sh/ruff:0.12.11@sha256:1c569ad1fd700da41578080d6823
 ACTIONLINT_IMAGE ?= rhysd/actionlint:1.7.7@sha256:887a259a5a534f3c4f36cb02dca341673c6089431057242cdc931e9f133147e9
 LYCHEE_IMAGE ?= lycheeverse/lychee:0.24.2@sha256:e2d19e57cf6ab037026f20b8e449a1f30d9d7f81eef4194763aab2eab20bd28d
 SELF_RELEASE_URL ?= ^https://github[.]com/ylaung-uod/byot-cps/releases/tag/v1[.]0[.]0$$
+REPRODUCTION_ARCHIVE ?= dist/byot-cps-v1.0.0-reproduction.tar.gz
 
-.PHONY: test validate validate-data whitespace-check markdown-link-check external-link-check python-static workflow-lint secret-scan dockerfile-lint archive-inspect ci-static container-ci release-check live-release-check fetch-help prepare-images verify-images docker-images container-sboms container-sboms-check container-runtime-test phase4-verify pfsense-config-validate pfsense-config-drive templates topology smoke-test refresh-spec
+.PHONY: test validate validate-data whitespace-check markdown-link-check external-link-check python-static workflow-lint secret-scan dockerfile-lint archive-inspect reproduction-archive ci-static container-ci release-check live-release-check fetch-help prepare-images verify-images docker-images container-sboms container-sboms-check container-runtime-test phase4-verify pfsense-config-validate pfsense-config-drive templates topology smoke-test refresh-spec
 
 test:
 	$(PYTHON) -m unittest discover -s tests -v
@@ -55,6 +56,9 @@ dockerfile-lint:
 archive-inspect:
 	@git archive --format=tar "$$(git write-tree)" | $(PYTHON) src/inspect_archive.py -
 
+reproduction-archive:
+	$(PYTHON) src/build_reproduction_archive.py --output "$(REPRODUCTION_ARCHIVE)"
+
 ci-static: validate validate-data test markdown-link-check external-link-check python-static workflow-lint secret-scan dockerfile-lint archive-inspect
 
 container-ci: container-sboms-check container-runtime-test
@@ -63,7 +67,7 @@ release-check:
 	@set -eu; trap 'status=$$?; echo "RELEASE CHECK: FAILED (exit $$status)"' EXIT; \
 	  test -z "$$(git diff --name-only)" || { echo "unstaged tracked changes must be staged" >&2; exit 1; }; \
 	  test -z "$$(git ls-files --others --exclude-standard)" || { echo "untracked files must be staged or ignored" >&2; exit 1; }; \
-	  $(MAKE) validate validate-data test whitespace-check markdown-link-check external-link-check python-static workflow-lint secret-scan dockerfile-lint archive-inspect container-sboms-check container-runtime-test; \
+	  $(MAKE) validate validate-data test whitespace-check markdown-link-check external-link-check python-static workflow-lint secret-scan dockerfile-lint archive-inspect reproduction-archive container-sboms-check container-runtime-test; \
 	  trap - EXIT; echo "RELEASE CHECK: PASSED"
 
 live-release-check: templates

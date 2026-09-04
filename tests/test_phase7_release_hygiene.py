@@ -1,6 +1,10 @@
+import re
 import subprocess
+import stat
+import tarfile
+import tempfile
 import unittest
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -32,10 +36,10 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             "Repository history",
         ):
             self.assertIn(expected, text)
-        self.assertIn("46 links", text)
+        self.assertIn("57 links", text)
         self.assertNotIn("recorded in its GitHub pull request and release record", text)
 
-    def test_release_process_requires_the_phase_seven_final_gate(self):
+    def test_release_process_and_minimal_reproduction_archive(self):
         checks = (ROOT / "docs" / "RELEASE-CHECKS.md").read_text()
         for expected in (
             "clean clone",
@@ -46,6 +50,103 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             "GitHub API",
         ):
             self.assertIn(expected, checks)
+
+        expected = {
+            "CITATION.cff",
+            "Dockerfiles/ubuntu18-lab/Dockerfile",
+            "Dockerfiles/ubuntu18-lab/entrypoint.sh",
+            "Dockerfiles/ubuntu18-lab/isrg-root-x1.pem",
+            "Dockerfiles/ubuntu24-lab/Dockerfile",
+            "Dockerfiles/ubuntu24-lab/entrypoint.sh",
+            "Dockerfiles/ubuntu24-lab/isrg-root-x1.pem",
+            "LICENSE",
+            "Makefile",
+            "NOTICE.md",
+            "QUICKSTART.md",
+            "README.md",
+            "REPRODUCTION-MANIFEST.sha256",
+            "SECURITY.md",
+            "config/pfsense-public.xml",
+            "container_images.json",
+            "docs/ARCHITECTURE.md",
+            "docs/ARTIFACTS.md",
+            "docs/CONTAINERS.md",
+            "docs/REPRODUCIBILITY.md",
+            "docs/SECURITY-BOUNDARY.md",
+            "gns3_templates.json",
+            "images.json",
+            "images/README.md",
+            "pfsense/README.md",
+            "provenance.json",
+            "requirements.txt",
+            "sbom/ubuntu18-lab.spdx.json",
+            "sbom/ubuntu24-lab.spdx.json",
+            "src/create_templates.py",
+            "src/create_topology.py",
+            "src/fetch_help.py",
+            "src/generate_container_sboms.py",
+            "src/gns3_api.py",
+            "src/gns3_cleanup.py",
+            "src/pfsense_config.py",
+            "src/prepare_images.py",
+            "src/smoke_test.py",
+            "src/test_container_images.py",
+            "src/topology_transform.py",
+            "src/validate.py",
+            "src/verify_images.py",
+            "topology.json",
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            archive = Path(temporary) / "reproduction.tar.gz"
+            command = [
+                "make",
+                "reproduction-archive",
+                f"REPRODUCTION_ARCHIVE={archive}",
+            ]
+            subprocess.run(command, cwd=ROOT, check=True, capture_output=True)
+            first = archive.read_bytes()
+            self.assertEqual(stat.S_IMODE(archive.stat().st_mode), 0o644)
+            subprocess.run(command, cwd=ROOT, check=True, capture_output=True)
+            self.assertEqual(archive.read_bytes(), first)
+
+            with tarfile.open(archive, "r:gz") as bundle:
+                members = bundle.getmembers()
+                self.assertTrue(all(member.isfile() for member in members))
+                prefix = "byot-cps-v1.0.0/"
+                self.assertTrue(all(member.name.startswith(prefix) for member in members))
+                for member in members:
+                    path = PurePosixPath(member.name)
+                    self.assertFalse(path.is_absolute())
+                    self.assertNotIn("..", path.parts)
+                    self.assertEqual(member.mode, 0o644)
+                    self.assertEqual((member.uid, member.gid), (0, 0))
+                    self.assertEqual((member.uname, member.gname), ("", ""))
+                    self.assertEqual(member.mtime, 0)
+                self.assertEqual(
+                    {member.name.removeprefix(prefix) for member in members}, expected
+                )
+                bundle.extractall(temporary, filter="data")
+
+            extracted = Path(temporary) / "byot-cps-v1.0.0"
+            broken_links = []
+            for markdown in extracted.rglob("*.md"):
+                for target in re.findall(r"\[[^]]+\]\(([^)]+)\)", markdown.read_text()):
+                    if target.startswith(("http://", "https://", "mailto:", "#")):
+                        continue
+                    relative = target.split("#", 1)[0]
+                    if relative and not (markdown.parent / relative).is_file():
+                        broken_links.append(f"{markdown.relative_to(extracted)}: {target}")
+            self.assertEqual(broken_links, [])
+            subprocess.run(
+                ["sha256sum", "-c", "REPRODUCTION-MANIFEST.sha256"],
+                cwd=extracted,
+                check=True,
+                capture_output=True,
+            )
+            subprocess.run(["make", "validate"], cwd=extracted, check=True)
+            subprocess.run(
+                ["make", "pfsense-config-validate"], cwd=extracted, check=True
+            )
 
     def test_release_metadata_matches_the_snapshot_repository(self):
         notes = (ROOT / "docs" / "RELEASE-NOTES-v1.0.0.md").read_text()

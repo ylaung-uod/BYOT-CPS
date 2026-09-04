@@ -73,13 +73,19 @@ artifact guide, and run:
 ```bash
 git clone <repository-url> byot-cps
 cd byot-cps
-make test
+make validate
 make fetch-help
 make prepare-images
 make templates
 IOT_INTERFACE=docker0 make topology
 make smoke-test
 ```
+
+End users may instead download the minimal reproduction archive attached to the
+GitHub release. It contains only the declarative inputs, runtime builders,
+required documentation, licenses, and SBOMs. Verify it after extraction with
+`sha256sum -c REPRODUCTION-MANIFEST.sha256`; development tests and CI files
+remain available in the source repository for independent audit.
 
 `make templates` verifies external images, builds the pinned containers, creates
 the pfSense configuration drive, and reconciles complete GNS3 template payloads.
@@ -108,10 +114,20 @@ Host-specific inputs are explicit Make variables: `GNS3_SERVER_CONFIG`,
 
 ## Verification
 
+In a full source checkout, maintainers run:
+
 ```bash
 make release-check
 IOT_INTERFACE=docker0 make live-release-check
 ```
+
+Maintainers build the deterministic end-user bundle with
+`make reproduction-archive`. Its default output is
+`dist/byot-cps-v1.0.0-reproduction.tar.gz`.
+
+In the minimal archive, end users can run `make validate`,
+`make pfsense-config-validate`, `make phase4-verify`, and `make smoke-test`
+without the source repository's development-only tests or CI configuration.
 
 Public pull requests run the portable static, policy, unit, and container gates.
 The live GNS3 gate remains a maintainer release check because it requires local
