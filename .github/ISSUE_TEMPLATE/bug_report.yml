@@ -1,0 +1,55 @@
+name: Bug report
+description: Report a reproducible BYOT-CPS defect
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include secrets, private configurations, proprietary artifacts,
+        packet captures with sensitive data, or malware samples. Follow
+        SECURITY.md for vulnerabilities.
+  - type: input
+    id: version
+    attributes:
+      label: BYOT-CPS version
+      description: Tag or commit exhibiting the problem.
+      placeholder: v1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Host OS, GNS3, Docker, QEMU, and Python versions.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Minimal commands and sanitized inputs needed to reproduce.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and sanitized output
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I removed credentials, private data, controlled artifacts, and malware samples.
+          required: true
+        - label: I reproduced this on an isolated lab system, not a production network.
+          required: true

@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.state/
+artifacts/
+downloads/
+secrets/
+images/*
+!images/README.md

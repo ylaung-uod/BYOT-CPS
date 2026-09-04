@@ -1,0 +1,3 @@
+ignored:
+  # Ubuntu Snapshot pins repository state instead of individual apt versions.
+  - DL3008

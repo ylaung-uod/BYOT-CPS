@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pfsense>
+  <version>24.0</version>
+  <system>
+    <hostname>firewall</hostname>
+    <domain>byot-cps.invalid</domain>
+    <timezone>Etc/UTC</timezone>
+    <language>en_US</language>
+    <webgui>
+      <protocol>https</protocol>
+    </webgui>
+    <group>
+      <name>all</name>
+      <description>All Users</description>
+      <scope>system</scope>
+      <gid>1998</gid>
+      <member>0</member>
+    </group>
+    <group>
+      <name>admins</name>
+      <description>System Administrators</description>
+      <scope>system</scope>
+      <gid>1999</gid>
+      <member>0</member>
+      <priv>page-all</priv>
+    </group>
+    <user>
+      <name>admin</name>
+      <descr>Public lab administrator</descr>
+      <scope>system</scope>
+      <groupname>admins</groupname>
+      <uid>0</uid>
+      <priv>user-shell-access</priv>
+      <bcrypt-hash>$2b$12$gqP5oxCfMSSnYRlvOEfngO1sFra5J/.TSYfTx/31h0gMUmgCmVlTO</bcrypt-hash>
+    </user>
+    <nextuid>2000</nextuid>
+    <nextgid>2000</nextgid>
+  </system>
+  <interfaces>
+    <wan>
+      <enable />
+      <if>em0</if>
+      <descr>WAN</descr>
+      <ipaddr>dhcp</ipaddr>
+      <ipaddrv6>none</ipaddrv6>
+    </wan>
+    <lan>
+      <enable />
+      <if>em1</if>
+      <descr>MANAGEMENT</descr>
+      <ipaddr>192.168.99.1</ipaddr>
+      <subnet>24</subnet>
+      <ipaddrv6>none</ipaddrv6>
+    </lan>
+    <opt1>
+      <enable />
+      <if>em2</if>
+      <descr>DMZ</descr>
+      <ipaddr>172.20.0.1</ipaddr>
+      <subnet>24</subnet>
+      <ipaddrv6>none</ipaddrv6>
+    </opt1>
+    <opt2>
+      <enable />
+      <if>em3</if>
+      <descr>CPS</descr>
+      <ipaddr>10.0.0.1</ipaddr>
+      <subnet>24</subnet>
+      <ipaddrv6>none</ipaddrv6>
+    </opt2>
+  </interfaces>
+  <dhcpd>
+    <lan>
+      <enable />
+      <range><from>192.168.99.5</from><to>192.168.99.100</to></range>
+    </lan>
+    <opt1>
+      <enable />
+      <range><from>172.20.0.5</from><to>172.20.0.100</to></range>
+    </opt1>
+    <opt2>
+      <enable />
+      <range><from>10.0.0.5</from><to>10.0.0.100</to></range>
+    </opt2>
+  </dhcpd>
+  <nat><outbound><mode>automatic</mode></outbound></nat>
+  <filter>
+    <rule>
+      <type>pass</type><interface>lan</interface><ipprotocol>inet</ipprotocol>
+      <descr>Public lab management outbound</descr>
+      <source><network>lan</network></source><destination><any /></destination>
+    </rule>
+    <rule>
+      <type>pass</type><interface>opt1</interface><ipprotocol>inet</ipprotocol>
+      <descr>Public lab DMZ outbound</descr>
+      <source><network>opt1</network></source><destination><any /></destination>
+    </rule>
+    <rule>
+      <type>pass</type><interface>opt2</interface><ipprotocol>inet</ipprotocol>
+      <descr>Public lab CPS outbound</descr>
+      <source><network>opt2</network></source><destination><any /></destination>
+    </rule>
+  </filter>
+  <revision>
+    <description>Public synthetic BYOT-CPS baseline; contains no production configuration</description>
+    <username>BYOT-CPS contributors</username>
+  </revision>
+</pfsense>

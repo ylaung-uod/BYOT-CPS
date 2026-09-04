@@ -1,0 +1,20 @@
+* text=auto
+
+*.sh text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
+*.cff text eol=lf
+*.pem text eol=lf
+Makefile text eol=lf
+
+*.img binary
+*.iso binary
+*.gz binary
+*.qcow2 binary
+*.vmdk binary
+*.pcap binary
+*.pcapng binary

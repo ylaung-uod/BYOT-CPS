@@ -1,0 +1,598 @@
+{
+  "format": 1,
+  "source_project": "Firewall_Test_HMS",
+  "project": {
+    "name": "byot-cps",
+    "scene_height": 1000,
+    "scene_width": 2000,
+    "show_grid": true,
+    "show_interface_labels": false,
+    "show_layers": false,
+    "snap_to_grid": true
+  },
+  "nodes": [
+    {
+      "name": "FIREWALL",
+      "node_type": "qemu",
+      "x": -30,
+      "y": -105,
+      "z": 1,
+      "symbol": ":/symbols/affinity/circle/gray/firewall.svg",
+      "template": "pfsense"
+    },
+    {
+      "name": "ISP",
+      "node_type": "nat",
+      "x": -79,
+      "y": -410,
+      "z": 1,
+      "symbol": ":/symbols/nat.svg",
+      "properties": {
+        "ports_mapping": [
+          {
+            "interface": "virbr0",
+            "name": "nat0",
+            "port_number": 0,
+            "type": "ethernet"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WAN-SWITCH",
+      "node_type": "ethernet_switch",
+      "x": -30,
+      "y": -255,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/gray/switch.svg",
+      "properties": {
+        "ports_mapping": [
+          {
+            "name": "Ethernet0",
+            "port_number": 0,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet1",
+            "port_number": 1,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet2",
+            "port_number": 2,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet3",
+            "port_number": 3,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet4",
+            "port_number": 4,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet5",
+            "port_number": 5,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet6",
+            "port_number": 6,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet7",
+            "port_number": 7,
+            "type": "access",
+            "vlan": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "MGMT-SWITCH",
+      "node_type": "ethernet_switch",
+      "x": -180,
+      "y": -105,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/green/switch.svg",
+      "properties": {
+        "ports_mapping": [
+          {
+            "name": "Ethernet0",
+            "port_number": 0,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet1",
+            "port_number": 1,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet2",
+            "port_number": 2,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet3",
+            "port_number": 3,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet4",
+            "port_number": 4,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet5",
+            "port_number": 5,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet6",
+            "port_number": 6,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet7",
+            "port_number": 7,
+            "type": "access",
+            "vlan": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "DMZ-SWITCH",
+      "node_type": "ethernet_switch",
+      "x": 120,
+      "y": -105,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/red/switch.svg",
+      "properties": {
+        "ports_mapping": [
+          {
+            "name": "Ethernet0",
+            "port_number": 0,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet1",
+            "port_number": 1,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet2",
+            "port_number": 2,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet3",
+            "port_number": 3,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet4",
+            "port_number": 4,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet5",
+            "port_number": 5,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet6",
+            "port_number": 6,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet7",
+            "port_number": 7,
+            "type": "access",
+            "vlan": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "CPS-SWITCH",
+      "node_type": "ethernet_switch",
+      "x": -30,
+      "y": 45,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/blue/switch.svg",
+      "properties": {
+        "ports_mapping": [
+          {
+            "name": "Ethernet0",
+            "port_number": 0,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet1",
+            "port_number": 1,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet2",
+            "port_number": 2,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet3",
+            "port_number": 3,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet4",
+            "port_number": 4,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet5",
+            "port_number": 5,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet6",
+            "port_number": 6,
+            "type": "access",
+            "vlan": 1
+          },
+          {
+            "name": "Ethernet7",
+            "port_number": 7,
+            "type": "access",
+            "vlan": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "MGMT-ADMIN",
+      "node_type": "docker",
+      "x": -330,
+      "y": -105,
+      "z": 1,
+      "symbol": ":/symbols/affinity/circle/green/client_vm.svg",
+      "template": "ubuntu24_lab"
+    },
+    {
+      "name": "CPS-OPERATOR",
+      "node_type": "docker",
+      "x": -30,
+      "y": 195,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/blue/client_vm.svg",
+      "template": "ubuntu24_lab"
+    },
+    {
+      "name": "EXTERNAL-CLIENT",
+      "node_type": "docker",
+      "x": -180,
+      "y": -255,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/gray/client_vm.svg",
+      "template": "ubuntu24_lab"
+    },
+    {
+      "name": "IoT",
+      "node_type": "cloud",
+      "x": -229,
+      "y": 190,
+      "z": 1,
+      "symbol": ":/symbols/cloud.svg",
+      "properties": {
+        "interfaces": [],
+        "ports_mapping": [
+          {
+            "interface": "${IOT_INTERFACE}",
+            "name": "${IOT_INTERFACE}",
+            "port_number": 0,
+            "type": "ethernet"
+          }
+        ],
+        "remote_console_host": "",
+        "remote_console_http_path": "/",
+        "remote_console_port": 23,
+        "remote_console_type": "none"
+      }
+    },
+    {
+      "name": "DMZ-WEB-SERVER",
+      "node_type": "docker",
+      "x": 270,
+      "y": -105,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/red/client_vm.svg",
+      "template": "ubuntu24_lab"
+    },
+    {
+      "name": "C2-SIMULATOR",
+      "node_type": "docker",
+      "x": 120,
+      "y": -255,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/red/client_vm.svg",
+      "template": "ubuntu18_lab"
+    },
+    {
+      "name": "COMPROMISED-IOT-01",
+      "node_type": "docker",
+      "x": 120,
+      "y": 195,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/red/client_vm.svg",
+      "template": "ubuntu18_lab"
+    },
+    {
+      "name": "COMPROMISED-IOT-02",
+      "node_type": "docker",
+      "x": 270,
+      "y": 195,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/red/client_vm.svg",
+      "template": "ubuntu18_lab"
+    },
+    {
+      "name": "COMPROMISED-IOT-03",
+      "node_type": "docker",
+      "x": 270,
+      "y": 45,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/red/client_vm.svg",
+      "template": "ubuntu18_lab"
+    },
+    {
+      "name": "RED-TEAM-HOST",
+      "node_type": "docker",
+      "x": -255,
+      "y": 45,
+      "z": 1,
+      "symbol": ":/symbols/affinity/square/red/client_vm.svg",
+      "template": "ubuntu24_lab"
+    }
+  ],
+  "links": [
+    {
+      "nodes": [
+        {
+          "node": "ISP",
+          "adapter_number": 0,
+          "port_number": 0
+        },
+        {
+          "node": "WAN-SWITCH",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "WAN-SWITCH",
+          "adapter_number": 0,
+          "port_number": 1
+        },
+        {
+          "node": "FIREWALL",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "FIREWALL",
+          "adapter_number": 1,
+          "port_number": 0
+        },
+        {
+          "node": "MGMT-SWITCH",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "FIREWALL",
+          "adapter_number": 2,
+          "port_number": 0
+        },
+        {
+          "node": "DMZ-SWITCH",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "FIREWALL",
+          "adapter_number": 3,
+          "port_number": 0
+        },
+        {
+          "node": "CPS-SWITCH",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "MGMT-ADMIN",
+          "adapter_number": 0,
+          "port_number": 0
+        },
+        {
+          "node": "MGMT-SWITCH",
+          "adapter_number": 0,
+          "port_number": 1
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "CPS-SWITCH",
+          "adapter_number": 0,
+          "port_number": 1
+        },
+        {
+          "node": "CPS-OPERATOR",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "EXTERNAL-CLIENT",
+          "adapter_number": 0,
+          "port_number": 0
+        },
+        {
+          "node": "WAN-SWITCH",
+          "adapter_number": 0,
+          "port_number": 2
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "IoT",
+          "adapter_number": 0,
+          "port_number": 0
+        },
+        {
+          "node": "CPS-SWITCH",
+          "adapter_number": 0,
+          "port_number": 2
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "DMZ-SWITCH",
+          "adapter_number": 0,
+          "port_number": 1
+        },
+        {
+          "node": "DMZ-WEB-SERVER",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "CPS-SWITCH",
+          "adapter_number": 0,
+          "port_number": 3
+        },
+        {
+          "node": "COMPROMISED-IOT-01",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "WAN-SWITCH",
+          "adapter_number": 0,
+          "port_number": 3
+        },
+        {
+          "node": "C2-SIMULATOR",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "CPS-SWITCH",
+          "adapter_number": 0,
+          "port_number": 4
+        },
+        {
+          "node": "COMPROMISED-IOT-02",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "CPS-SWITCH",
+          "adapter_number": 0,
+          "port_number": 5
+        },
+        {
+          "node": "COMPROMISED-IOT-03",
+          "adapter_number": 0,
+          "port_number": 0
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "RED-TEAM-HOST",
+          "adapter_number": 0,
+          "port_number": 0
+        },
+        {
+          "node": "CPS-SWITCH",
+          "adapter_number": 0,
+          "port_number": 6
+        }
+      ]
+    }
+  ]
+}

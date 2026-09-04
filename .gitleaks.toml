@@ -1,0 +1,8 @@
+title = "BYOT-CPS secret-scanning policy"
+
+[[allowlists]]
+description = "Literal incomplete PEM markers exercise public-config rejection"
+condition = "AND"
+paths = ['''tests/test_pfsense_config\.py''']
+regexTarget = "match"
+regexes = ['''-----BEGIN PRIVATE KEY-----''']

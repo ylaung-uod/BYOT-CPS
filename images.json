@@ -1,0 +1,31 @@
+{
+  "algorithm": "sha256",
+  "images": [
+    {
+      "name": "pfSense.qcow2",
+      "source": "generated",
+      "format": "qcow2",
+      "virtual_size": 107374182400,
+      "create_size": "100G",
+      "role": "locally generated blank pfSense installation disk"
+    },
+    {
+      "name": "netgate-installer-v1.2-RELEASE-amd64.iso",
+      "source": "vendor-download",
+      "sha256": "f55dc289eeda16c9698db092c93b3f26a36fdacaadc4fab67876530bd3aeae96",
+      "size": 1059239936,
+      "role": "pfSense AMD64 ISO installer",
+      "archive": {
+        "name": "netgate-installer-v1.2-RELEASE-amd64.iso.gz",
+        "sha256": "184514fe7df0d339362c1e33fa051c464577a450528759b343ade894c7c57955",
+        "size": 342781760
+      },
+      "download_page": "https://shop.netgate.com/products/netgate-installer",
+      "current_checksums": "https://www.netgate.com/hubfs/pfSense-plus-installer-checksums.txt",
+      "license_terms": "https://www.netgate.com/company/legal/eula"
+    }
+  ],
+  "legacy_marketplace_md5": {
+    "pfSense.qcow2": "1e6409a4523ada212dea2ebc50e50a65"
+  }
+}

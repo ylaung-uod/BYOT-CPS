@@ -1,0 +1,39 @@
+name: Documentation improvement
+description: Report unclear, missing, or incorrect public documentation
+title: "[Docs]: "
+labels:
+  - documentation
+body:
+  - type: dropdown
+    id: document
+    attributes:
+      label: Document area
+      options:
+        - README / project overview
+        - Clean-clone quick start
+        - Architecture
+        - Reproducibility
+        - Artifacts and licensing
+        - Security boundary
+        - Contribution or support policy
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What would an independent reader misunderstand or be unable to do?
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction
+      description: Proposed wording, commands, or source links.
+  - type: checkboxes
+    id: sensitive
+    attributes:
+      label: Public-content confirmation
+      options:
+        - label: This report contains no credentials, private configuration, proprietary artifact, or malware sample.
+          required: true

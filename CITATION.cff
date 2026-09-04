@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: >-
+  If you use the BYOT-CPS architecture or evaluation, cite the paper. If you
+  use or modify the template, also cite this software release.
+title: "BYOT-CPS"
+type: software
+authors:
+  - name: "BYOT-CPS contributors"
+version: 1.0.0
+date-released: 2026-09-04
+license: MIT
+repository-code: "https://github.com/ylaung-uod/byot-cps"
+url: "https://github.com/ylaung-uod/byot-cps/releases/tag/v1.0.0"
+abstract: >-
+  A reproducible GNS3 cyber-physical security topology with a pfSense firewall,
+  benign Ubuntu lab containers, declarative templates, deterministic
+  configuration media, artifact verification, SBOMs, and live smoke tests.
+keywords:
+  - GNS3
+  - cyber-physical systems
+  - network security
+  - reproducibility
+  - pfSense
+preferred-citation:
+  type: article
+  title: >-
+    BYOT-CPS: A Hybrid Cyber-Physical Systems Testbed for IoT Security
+    Assessment and Platform Evaluation
+  authors:
+    - family-names: "Aung"
+      given-names: "Yan Lin"
+    - family-names: "Neba"
+      given-names: "Nelson Che"
+  year: 2026
+  doi: "10.48550/arXiv.2605.23059"
+  url: "https://arxiv.org/abs/2605.23059"

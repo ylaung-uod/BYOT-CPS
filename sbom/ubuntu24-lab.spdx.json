@@ -1,0 +1,2214 @@
+{
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "creationInfo": {
+    "created": "2026-09-03T00:00:00Z",
+    "creators": [
+      "Tool: byot-cps/generate_container_sboms.py"
+    ]
+  },
+  "dataLicense": "CC0-1.0",
+  "documentDescribes": [
+    "SPDXRef-ContainerImage-71270b80711c0b8f"
+  ],
+  "documentNamespace": "https://byot-cps.invalid/spdx/ubuntu24-lab/ceabc3373c11c907b5718054a0acb296f2c2d62b452b282162eeb29b71897efb",
+  "name": "BYOT-CPS ubuntu24-lab container SBOM",
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-ContainerImage-71270b80711c0b8f",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "OTHER",
+          "referenceLocator": "byot-cps/ubuntu24-lab:latest",
+          "referenceType": "docker-image"
+        }
+      ],
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "ubuntu24-lab",
+      "sourceInfo": "Base image: ubuntu:24.04@sha256:33ceb71981b602c1a7443a53469e4dba065f7503eab3078a2d7a57a2ab987517",
+      "versionInfo": "20260903T000000Z"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-5d39673da2c06820",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "adduser",
+      "versionInfo": "3.137ubuntu1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-916d133edf7c98e3",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "apt",
+      "versionInfo": "2.8.3"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-0cfc595acae17870",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "base-files",
+      "versionInfo": "13ubuntu10.4"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-37e379d111924229",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "base-passwd",
+      "versionInfo": "3.6.3build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-73560298338b4508",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "bash",
+      "versionInfo": "5.2.21-2ubuntu4"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-6388c927bb23e19e",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "bsdutils",
+      "versionInfo": "1:2.39.3-9ubuntu6.5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-0d1be31c80113026",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "ca-certificates",
+      "versionInfo": "20260601~24.04.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-d3e510af3783faa2",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "coreutils",
+      "versionInfo": "9.4-3ubuntu6.2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-da53605935a32c36",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "curl",
+      "versionInfo": "8.5.0-2ubuntu10.13"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-76bea024e7b2df93",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "dash",
+      "versionInfo": "0.5.12-6ubuntu5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-ae7ba0ee9a7ed627",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "debconf",
+      "versionInfo": "1.5.86ubuntu1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-bb0698acc03baa3e",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "debianutils",
+      "versionInfo": "5.17build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-0ed6174e14279e21",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "diffutils",
+      "versionInfo": "1:3.10-1build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-03ed5f94e7c46e41",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "dpkg",
+      "versionInfo": "1.22.6ubuntu6.6"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-5d43f35a9c71b1f5",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "e2fsprogs",
+      "versionInfo": "1.47.0-2.4~exp1ubuntu4.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-92857367f31bfbaa",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "findutils",
+      "versionInfo": "4.9.0-5build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-eff76ae3663b7243",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "gcc-14-base:amd64",
+      "versionInfo": "14.2.0-4ubuntu2~24.04.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-1d3a44bd8ceda1ac",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "gpgv",
+      "versionInfo": "2.4.4-2ubuntu17.4"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-b276542007aa479a",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "grep",
+      "versionInfo": "3.11-4build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-0859e1e24649b197",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "gzip",
+      "versionInfo": "1.12-1ubuntu3.2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-64494a21c60d2873",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "hostname",
+      "versionInfo": "3.23+nmu2ubuntu2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-b333d283b58656c1",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "init-system-helpers",
+      "versionInfo": "1.66ubuntu1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-e81ee5f3e79cecdd",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "iproute2",
+      "versionInfo": "6.1.0-1ubuntu6.4"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-cc7ba039c7066f3b",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "iputils-ping",
+      "versionInfo": "3:20240117-1ubuntu0.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-befd2ce9783e0460",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libacl1:amd64",
+      "versionInfo": "2.3.2-1build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-759e73706261f52b",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libapparmor1:amd64",
+      "versionInfo": "4.0.1really4.0.1-0ubuntu0.24.04.7"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-5e031664e89ed8d5",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libapt-pkg6.0t64:amd64",
+      "versionInfo": "2.8.3"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-57e45369afeb5e0a",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libassuan0:amd64",
+      "versionInfo": "2.5.6-1build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-c63315eb03827f98",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libattr1:amd64",
+      "versionInfo": "1:2.5.2-1build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-f4a543201487b905",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libaudit-common",
+      "versionInfo": "1:3.1.2-2.1build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-72de7092a075815f",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libaudit1:amd64",
+      "versionInfo": "1:3.1.2-2.1build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-862100e282aa07cf",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libblkid1:amd64",
+      "versionInfo": "2.39.3-9ubuntu6.5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-2cb7a47d6ed3932f",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libbpf1:amd64",
+      "versionInfo": "1:1.3.0-2build2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-800df31ef675cd1d",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libbrotli1:amd64",
+      "versionInfo": "1.1.0-2build2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-2c28adf66174b812",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libbsd0:amd64",
+      "versionInfo": "0.12.1-1build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-10fef6207b59b05c",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libbz2-1.0:amd64",
+      "versionInfo": "1.0.8-5.1build0.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-812afed78db82058",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libc-bin",
+      "versionInfo": "2.39-0ubuntu8.8"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-4676d5190b7a3a93",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libc6:amd64",
+      "versionInfo": "2.39-0ubuntu8.8"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-6f7eda41763a3759",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libcap-ng0:amd64",
+      "versionInfo": "0.8.4-2build2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-241e67c068ecab76",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libcap2-bin",
+      "versionInfo": "1:2.66-5ubuntu2.4"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-f8da004917579d57",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libcap2:amd64",
+      "versionInfo": "1:2.66-5ubuntu2.4"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-0a0265a5c61ae948",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libcbor0.10:amd64",
+      "versionInfo": "0.10.2-1.2ubuntu2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-2919431858dc6c96",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libcom-err2:amd64",
+      "versionInfo": "1.47.0-2.4~exp1ubuntu4.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-baad3eca653f8eea",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libcrypt1:amd64",
+      "versionInfo": "1:4.4.36-4build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-5df24697555df1cd",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libcurl4t64:amd64",
+      "versionInfo": "8.5.0-2ubuntu10.13"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-b524e483a605daea",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libdb5.3t64:amd64",
+      "versionInfo": "5.3.28+dfsg2-7"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-d63dc583a1e2a959",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libdbus-1-3:amd64",
+      "versionInfo": "1.14.10-4ubuntu4.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-9b5ca0d84b353ae3",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libdebconfclient0:amd64",
+      "versionInfo": "0.271ubuntu3"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-6cc277202594a2ed",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libedit2:amd64",
+      "versionInfo": "3.1-20230828-1build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-07d27e31b390bacb",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libelf1t64:amd64",
+      "versionInfo": "0.190-1.1ubuntu0.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-da929ff1cc4146be",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libext2fs2t64:amd64",
+      "versionInfo": "1.47.0-2.4~exp1ubuntu4.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-c5959ff2d1c4a466",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libffi8:amd64",
+      "versionInfo": "3.4.6-1build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-d3a8dc582dcd7826",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libfido2-1:amd64",
+      "versionInfo": "1.14.0-1build3"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-e1064e16d7ed894a",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libgcc-s1:amd64",
+      "versionInfo": "14.2.0-4ubuntu2~24.04.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-afe0b6c721ecabc1",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libgcrypt20:amd64",
+      "versionInfo": "1.10.3-2ubuntu0.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-9a73df9bc46db320",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libgmp10:amd64",
+      "versionInfo": "2:6.3.0+dfsg-2ubuntu6.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-31e876cbb0889742",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libgnutls30t64:amd64",
+      "versionInfo": "3.8.3-1.1ubuntu3.6"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-3facc9bc7ba569fe",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libgpg-error0:amd64",
+      "versionInfo": "1.47-3build2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-3a93cf2d565525ff",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libgssapi-krb5-2:amd64",
+      "versionInfo": "1.20.1-6ubuntu2.8"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-04dd520a6928414c",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libhogweed6t64:amd64",
+      "versionInfo": "3.9.1-2.2build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-444d42f7cf7781a3",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libibverbs1:amd64",
+      "versionInfo": "50.0-2ubuntu0.2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-c78b7ea6e281293a",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libidn2-0:amd64",
+      "versionInfo": "2.3.7-2build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-d32d3b6b0784383a",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libk5crypto3:amd64",
+      "versionInfo": "1.20.1-6ubuntu2.8"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-11fb6e0dbc190d7c",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libkeyutils1:amd64",
+      "versionInfo": "1.6.3-3build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-0f7687d06cb8d746",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libkrb5-3:amd64",
+      "versionInfo": "1.20.1-6ubuntu2.8"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-97c36c22d9e3376d",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libkrb5support0:amd64",
+      "versionInfo": "1.20.1-6ubuntu2.8"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-5d39de5176c5026c",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libldap2:amd64",
+      "versionInfo": "2.6.10+dfsg-0ubuntu0.24.04.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-274fcb405d183c5c",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "liblz4-1:amd64",
+      "versionInfo": "1.9.4-1build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-b082ef18960c2098",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "liblzma5:amd64",
+      "versionInfo": "5.6.1+really5.4.5-1ubuntu0.3"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-793f163bdc8367a9",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libmd0:amd64",
+      "versionInfo": "1.1.0-2build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-6917de113df4efda",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libmnl0:amd64",
+      "versionInfo": "1.0.5-2build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-891655cf53986e53",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libmount1:amd64",
+      "versionInfo": "2.39.3-9ubuntu6.5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-d3ff1abee008f71a",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libncursesw6:amd64",
+      "versionInfo": "6.4+20240113-1ubuntu2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-9e1bd70813ec4e80",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libnettle8t64:amd64",
+      "versionInfo": "3.9.1-2.2build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-b0d1485555f3a4a7",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libnghttp2-14:amd64",
+      "versionInfo": "1.59.0-1ubuntu0.4"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-97373b303bf35853",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libnl-3-200:amd64",
+      "versionInfo": "3.7.0-0.3build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-56f93199be1a6771",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libnl-route-3-200:amd64",
+      "versionInfo": "3.7.0-0.3build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-f09bbfdb2d65ffa0",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libnpth0t64:amd64",
+      "versionInfo": "1.6-3.1build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-76229a059d8d523e",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libp11-kit0:amd64",
+      "versionInfo": "0.25.3-4ubuntu2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-bfa5d630ffeb36bf",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libpam-modules-bin",
+      "versionInfo": "1.5.3-5ubuntu5.6"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-0a4e03fdb56c3301",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libpam-modules:amd64",
+      "versionInfo": "1.5.3-5ubuntu5.6"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-090381550d119ad6",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libpam-runtime",
+      "versionInfo": "1.5.3-5ubuntu5.6"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-c8fb30ca8cfc04ba",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libpam0g:amd64",
+      "versionInfo": "1.5.3-5ubuntu5.6"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-6e50cdbfb1e92a69",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libpcap0.8t64:amd64",
+      "versionInfo": "1.10.4-4.1ubuntu3"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-3145f49b205b16c8",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libpcre2-8-0:amd64",
+      "versionInfo": "10.42-4ubuntu2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-a4d3640c66e14b2c",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libproc2-0:amd64",
+      "versionInfo": "2:4.0.4-4ubuntu3.3"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-fccad642c2d5ec20",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libpsl5t64:amd64",
+      "versionInfo": "0.21.2-1.1build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-d10f4a0ebe963b26",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "librtmp1:amd64",
+      "versionInfo": "2.4+20151223.gitfa8646d.1-2build7"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-79a1b83f2a7f96ad",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libsasl2-2:amd64",
+      "versionInfo": "2.1.28+dfsg1-5ubuntu3.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-7ce876eeea99fbf9",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libsasl2-modules-db:amd64",
+      "versionInfo": "2.1.28+dfsg1-5ubuntu3.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-68e20aa16ea04227",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libseccomp2:amd64",
+      "versionInfo": "2.5.5-1ubuntu3.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-2000391f026decca",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libselinux1:amd64",
+      "versionInfo": "3.5-2ubuntu2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-31ee32dd17bb86dc",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libsemanage-common",
+      "versionInfo": "3.5-1build5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-5ce8bb7a6de5528c",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libsemanage2:amd64",
+      "versionInfo": "3.5-1build5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-2509288e402aed04",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libsepol2:amd64",
+      "versionInfo": "3.5-2build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-177fb3ad22c50a49",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libsmartcols1:amd64",
+      "versionInfo": "2.39.3-9ubuntu6.5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-f5288228d82ab20c",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libss2:amd64",
+      "versionInfo": "1.47.0-2.4~exp1ubuntu4.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-b980b179900db638",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libssh-4:amd64",
+      "versionInfo": "0.10.6-2ubuntu0.5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-bcbdcfc941e31471",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libssl3t64:amd64",
+      "versionInfo": "3.0.13-0ubuntu3.15"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-5332cea097215141",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libstdc++6:amd64",
+      "versionInfo": "14.2.0-4ubuntu2~24.04.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-affc2db737923842",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libsystemd0:amd64",
+      "versionInfo": "255.4-1ubuntu8.17"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-0e2583e32f00f7c9",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libtasn1-6:amd64",
+      "versionInfo": "4.19.0-3ubuntu0.24.04.2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-eac02740b8e85731",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libtinfo6:amd64",
+      "versionInfo": "6.4+20240113-1ubuntu2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-6aa08f4924718d9a",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libudev1:amd64",
+      "versionInfo": "255.4-1ubuntu8.17"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-e10fecb479e676db",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libunistring5:amd64",
+      "versionInfo": "1.1-2build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-29ff64701e738a37",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libuuid1:amd64",
+      "versionInfo": "2.39.3-9ubuntu6.5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-32913191ec2bc857",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libwrap0:amd64",
+      "versionInfo": "7.6.q-33"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-8e216b4238a991c9",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libxtables12:amd64",
+      "versionInfo": "1.8.10-3ubuntu2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-00be6a74c7b808fd",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libxxhash0:amd64",
+      "versionInfo": "0.8.2-2build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-d6b191624ffac581",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "libzstd1:amd64",
+      "versionInfo": "1.5.5+dfsg2-2build1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-c56a671a52404882",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "login",
+      "versionInfo": "1:4.13+dfsg1-4ubuntu3.2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-fe9563a5a75f94c0",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "logsave",
+      "versionInfo": "1.47.0-2.4~exp1ubuntu4.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-6337cc4e6fac9ac0",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "mawk",
+      "versionInfo": "1.3.4.20240123-1build1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-c0600e099abd22ff",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "mount",
+      "versionInfo": "2.39.3-9ubuntu6.5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-e87a0c0f065a03b6",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "ncurses-base",
+      "versionInfo": "6.4+20240113-1ubuntu2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-20b17d8a3da739b1",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "ncurses-bin",
+      "versionInfo": "6.4+20240113-1ubuntu2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-8b72fd6b840abdd1",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "net-tools",
+      "versionInfo": "2.10-0.1ubuntu4.4"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-4bf55edb7a8dbd18",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "netcat-openbsd",
+      "versionInfo": "1.226-1ubuntu2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-a10b35f8c169562e",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "openssh-client",
+      "versionInfo": "1:9.6p1-3ubuntu13.18"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-ec75590a5ef67788",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "openssh-server",
+      "versionInfo": "1:9.6p1-3ubuntu13.18"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-b1b14eea683bd19f",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "openssh-sftp-server",
+      "versionInfo": "1:9.6p1-3ubuntu13.18"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-7b293bc44c95436b",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "openssl",
+      "versionInfo": "3.0.13-0ubuntu3.15"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-11ea03e9441b76a1",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "passwd",
+      "versionInfo": "1:4.13+dfsg1-4ubuntu3.2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-b765aebd8bf4ebad",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "perl-base",
+      "versionInfo": "5.38.2-3.2ubuntu0.3"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-d7b03a6009c9818c",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "procps",
+      "versionInfo": "2:4.0.4-4ubuntu3.3"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-d88c9f427dee69c1",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "sed",
+      "versionInfo": "4.9-2ubuntu0.24.04.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-386ef6e699d55d17",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "sensible-utils",
+      "versionInfo": "0.0.22"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-7b6b5f09728d13e5",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "sudo",
+      "versionInfo": "1.9.15p5-3ubuntu5.24.04.2"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-2cdd2dd3df26b7ce",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "sysvinit-utils",
+      "versionInfo": "3.08-6ubuntu3"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-c8660fa81a70b581",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "tar",
+      "versionInfo": "1.35+dfsg-3ubuntu0.4"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-142a0cedf1bf1c88",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "tcpdump",
+      "versionInfo": "4.99.4-3ubuntu4.24.04.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-7222208b18e84959",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "ubuntu-keyring",
+      "versionInfo": "2023.11.28.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-7199afceb5e5520c",
+      "comment": "Architecture: all",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "ucf",
+      "versionInfo": "3.0043+nmu1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-d77e9a3b8cff9ec1",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "unminimize",
+      "versionInfo": "0.2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-487540b7aa25dcc1",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "util-linux",
+      "versionInfo": "2.39.3-9ubuntu6.5"
+    },
+    {
+      "SPDXID": "SPDXRef-DebPackage-5209d97137a8171f",
+      "comment": "Architecture: amd64",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "zlib1g:amd64",
+      "versionInfo": "1:1.3.dfsg-3.1ubuntu2.1"
+    }
+  ],
+  "relationships": [
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-5d39673da2c06820",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-916d133edf7c98e3",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-0cfc595acae17870",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-37e379d111924229",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-73560298338b4508",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-6388c927bb23e19e",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-0d1be31c80113026",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-d3e510af3783faa2",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-da53605935a32c36",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-76bea024e7b2df93",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-ae7ba0ee9a7ed627",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-bb0698acc03baa3e",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-0ed6174e14279e21",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-03ed5f94e7c46e41",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-5d43f35a9c71b1f5",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-92857367f31bfbaa",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-eff76ae3663b7243",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-1d3a44bd8ceda1ac",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-b276542007aa479a",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-0859e1e24649b197",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-64494a21c60d2873",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-b333d283b58656c1",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-e81ee5f3e79cecdd",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-cc7ba039c7066f3b",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-befd2ce9783e0460",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-759e73706261f52b",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-5e031664e89ed8d5",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-57e45369afeb5e0a",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-c63315eb03827f98",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-f4a543201487b905",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-72de7092a075815f",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-862100e282aa07cf",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-2cb7a47d6ed3932f",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-800df31ef675cd1d",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-2c28adf66174b812",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-10fef6207b59b05c",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-812afed78db82058",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-4676d5190b7a3a93",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-6f7eda41763a3759",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-241e67c068ecab76",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-f8da004917579d57",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-0a0265a5c61ae948",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-2919431858dc6c96",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-baad3eca653f8eea",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-5df24697555df1cd",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-b524e483a605daea",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-d63dc583a1e2a959",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-9b5ca0d84b353ae3",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-6cc277202594a2ed",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-07d27e31b390bacb",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-da929ff1cc4146be",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-c5959ff2d1c4a466",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-d3a8dc582dcd7826",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-e1064e16d7ed894a",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-afe0b6c721ecabc1",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-9a73df9bc46db320",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-31e876cbb0889742",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-3facc9bc7ba569fe",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-3a93cf2d565525ff",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-04dd520a6928414c",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-444d42f7cf7781a3",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-c78b7ea6e281293a",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-d32d3b6b0784383a",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-11fb6e0dbc190d7c",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-0f7687d06cb8d746",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-97c36c22d9e3376d",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-5d39de5176c5026c",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-274fcb405d183c5c",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-b082ef18960c2098",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-793f163bdc8367a9",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-6917de113df4efda",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-891655cf53986e53",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-d3ff1abee008f71a",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-9e1bd70813ec4e80",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-b0d1485555f3a4a7",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-97373b303bf35853",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-56f93199be1a6771",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-f09bbfdb2d65ffa0",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-76229a059d8d523e",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-bfa5d630ffeb36bf",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-0a4e03fdb56c3301",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-090381550d119ad6",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-c8fb30ca8cfc04ba",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-6e50cdbfb1e92a69",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-3145f49b205b16c8",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-a4d3640c66e14b2c",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-fccad642c2d5ec20",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-d10f4a0ebe963b26",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-79a1b83f2a7f96ad",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-7ce876eeea99fbf9",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-68e20aa16ea04227",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-2000391f026decca",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-31ee32dd17bb86dc",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-5ce8bb7a6de5528c",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-2509288e402aed04",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-177fb3ad22c50a49",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-f5288228d82ab20c",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-b980b179900db638",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-bcbdcfc941e31471",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-5332cea097215141",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-affc2db737923842",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-0e2583e32f00f7c9",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-eac02740b8e85731",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-6aa08f4924718d9a",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-e10fecb479e676db",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-29ff64701e738a37",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-32913191ec2bc857",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-8e216b4238a991c9",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-00be6a74c7b808fd",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-d6b191624ffac581",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-c56a671a52404882",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-fe9563a5a75f94c0",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-6337cc4e6fac9ac0",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-c0600e099abd22ff",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-e87a0c0f065a03b6",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-20b17d8a3da739b1",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-8b72fd6b840abdd1",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-4bf55edb7a8dbd18",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-a10b35f8c169562e",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-ec75590a5ef67788",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-b1b14eea683bd19f",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-7b293bc44c95436b",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-11ea03e9441b76a1",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-b765aebd8bf4ebad",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-d7b03a6009c9818c",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-d88c9f427dee69c1",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-386ef6e699d55d17",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-7b6b5f09728d13e5",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-2cdd2dd3df26b7ce",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-c8660fa81a70b581",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-142a0cedf1bf1c88",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-7222208b18e84959",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-7199afceb5e5520c",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-d77e9a3b8cff9ec1",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-487540b7aa25dcc1",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-DebPackage-5209d97137a8171f",
+      "relationshipType": "CONTAINS",
+      "spdxElementId": "SPDXRef-ContainerImage-71270b80711c0b8f"
+    }
+  ],
+  "spdxVersion": "SPDX-2.3"
+}
