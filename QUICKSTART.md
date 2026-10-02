@@ -66,15 +66,18 @@ git clone <repository-url> byot-cps
 cd byot-cps
 ```
 
-Alternatively, extract the minimal reproduction archive from the GitHub
-release and enter its `byot-cps-v1.0.0` directory. Verify its contents before
+Alternatively, download and extract the minimal reproduction archive from the
+GitHub release, then enter its `byot-cps-v1.0.0` directory. The manifest is
+generated inside that archive and is intentionally not tracked in the full
+source repository. From the extracted archive, verify its contents before
 continuing:
 
 ```bash
 sha256sum -c REPRODUCTION-MANIFEST.sha256
 ```
 
-For a Git checkout, confirm that the working tree is clean:
+For a Git checkout, skip the manifest command and confirm that the working tree
+is clean:
 
 ```bash
 git status --short --branch
