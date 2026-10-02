@@ -22,7 +22,10 @@ class PhaseFiveGovernanceTests(unittest.TestCase):
                 self.assertIn(f"]({path})", readme)
                 self.assertTrue((ROOT / path).is_file())
         quickstart = (ROOT / "QUICKSTART.md").read_text()
-        self.assertIn("git clone <repository-url> byot-cps", quickstart)
+        self.assertIn(
+            "git clone https://github.com/ylaung-uod/BYOT-CPS.git byot-cps",
+            quickstart,
+        )
         self.assertIn("make prepare-images", quickstart)
         self.assertIn("make templates", quickstart)
         self.assertIn("make smoke-test", quickstart)

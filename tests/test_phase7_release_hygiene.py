@@ -36,7 +36,7 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             "Repository history",
         ):
             self.assertIn(expected, text)
-        self.assertIn("57 links", text)
+        self.assertIn("58 links", text)
         self.assertNotIn("recorded in its GitHub pull request and release record", text)
 
     def test_release_process_and_minimal_reproduction_archive(self):

@@ -46,7 +46,7 @@ reproduction archive contains 43 files required by end users; development tests
 and CI policy remain in the source repository for auditability. While the
 repository is private, the self-referential v1.0.0 release URL is excluded
 from anonymous link checking and is instead verified through the GitHub API when
-the release is created. The remaining 57 links passed.
+the release is created. The remaining 58 links passed.
 
 The same candidate passed `IOT_INTERFACE=docker0 make live-release-check` for
 compromised-IoT counts 0, 1, 3, and 10. Every temporary project was read back,

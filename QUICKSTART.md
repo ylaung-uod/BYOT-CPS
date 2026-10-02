@@ -1,6 +1,9 @@
 # byot-cps quick-start manual
 
-This guide takes a clean host from repository checkout to a running `byot-cps` topology in GNS3.
+This guide takes a fresh 64-bit Ubuntu 24.04 LTS Desktop host from initial
+package installation to a running `byot-cps` topology in GNS3. Other Linux
+systems may work, but the commands below use Ubuntu 24.04 package names and
+services.
 
 ## 1. Understand what will be created
 
@@ -15,39 +18,72 @@ The default topology contains:
 
 The compromised-IoT pool defaults to three containers. For a pool of `N` containers, the generated topology contains `13 + N` nodes and `12 + N` links.
 
-## 2. Check the host prerequisites
+## 2. Prepare a fresh Ubuntu 24.04 host
 
-The template was developed with GNS3 2.2.55 on Linux. Verify the required commands:
+The pfSense installer and QEMU template require an x86-64 host. Confirm the OS
+release and architecture first:
+
+```bash
+. /etc/os-release
+printf 'Ubuntu %s (%s)\n' "$VERSION_ID" "$(dpkg --print-architecture)"
+test "$ID" = ubuntu
+test "$VERSION_ID" = 24.04
+test "$(dpkg --print-architecture)" = amd64
+```
+
+Install the base tools, Docker Engine from the Ubuntu repository, QEMU/KVM, and
+the utilities used to construct the deterministic pfSense configuration drive:
+
+```bash
+sudo apt update
+sudo apt install -y \
+  ca-certificates curl git make python3 software-properties-common \
+  docker.io qemu-system-x86 qemu-utils \
+  dosfstools mtools fdisk
+sudo systemctl enable --now docker
+```
+
+Install GNS3 from its official Ubuntu PPA. These commands follow the
+[GNS3 Linux installation guide](https://docs.gns3.com/docs/getting-started/installation/linux):
+
+```bash
+sudo add-apt-repository -y ppa:gns3/ppa
+sudo apt update
+sudo apt install gns3-gui gns3-server
+```
+
+Accept the package prompts appropriate for a single-user laboratory host. Add
+your login account to the groups needed for Docker, KVM, and GNS3 bridging:
+
+```bash
+sudo usermod -aG docker,kvm,ubridge "$USER"
+```
+
+Membership in the `docker` group grants root-equivalent control of the Docker
+daemon. Use it only on a dedicated lab host. Log out completely and sign back in
+before continuing; opening another terminal alone may not apply all new groups.
+
+Launch GNS3 once, select its local-server mode, and let the initial setup finish.
+The project was validated with GNS3 2.2.55; use a compatible GNS3 2.2 release.
+Then verify the complete host toolchain:
 
 ```bash
 gns3server --version
 docker --version
 qemu-system-x86_64 --version
+qemu-img --version
 python3 --version
 make --version
-command -v sfdisk mkfs.vfat mcopy mmd
-```
-
-Docker must work without `sudo`:
-
-```bash
+command -v sfdisk mkfs.vfat mcopy mmd sha256sum
 docker run --rm hello-world
+test -r /dev/kvm && test -w /dev/kvm && echo "KVM available"
 ```
 
-KVM should be available:
+If the KVM check fails, enable Intel VT-x or AMD-V/SVM in the system firmware,
+then confirm that your new login session includes the `kvm` group. Nested
+virtualization must also be enabled when Ubuntu itself runs in a VM.
 
-```bash
-test -e /dev/kvm && echo "KVM available"
-```
-
-On Ubuntu, the non-GNS3 dependencies can typically be installed with:
-
-```bash
-sudo apt update
-sudo apt install -y make docker.io qemu-system-x86 qemu-utils dosfstools mtools fdisk python3
-```
-
-Install and start GNS3 separately if it is not already present. The scripts read the local server address and credentials from:
+The scripts read the local GNS3 server address and credentials from:
 
 ```text
 ~/.config/GNS3/2.2/gns3_server.conf
@@ -62,7 +98,7 @@ make templates GNS3_SERVER_CONFIG=/path/to/gns3_server.conf
 ## 3. Enter the source tree
 
 ```bash
-git clone <repository-url> byot-cps
+git clone https://github.com/ylaung-uod/BYOT-CPS.git byot-cps
 cd byot-cps
 ```
 
