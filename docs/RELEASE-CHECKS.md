@@ -19,10 +19,10 @@ permissions. Its static job checks:
 - a source archive for private paths, generated disks, captures, logs, archives,
   credentials, private keys, unsafe member types, and oversized members.
 
-A separate container job builds both digest-pinned Ubuntu images, regenerates the
-SPDX package inventories, compares them with the tracked SBOMs, and exercises the
-runtime security policy. Third-party actions and quality-tool container images
-are pinned by immutable commit or image digest.
+A separate container job builds all three digest-pinned Ubuntu images,
+regenerates the SPDX package inventories, compares them with the tracked SBOMs,
+and exercises the runtime security policy. Third-party actions and quality-tool
+container images are pinned by immutable commit or image digest.
 
 ## Local release check
 
@@ -118,7 +118,8 @@ same release commit:
 2. tracked files contain no private files or identifying paths;
 3. GitHub detects the MIT license and the release archive passes
    `src/inspect_archive.py` plus manual member review;
-4. both Docker images build and pass their runtime and SBOM checks;
+4. all three Docker images build and pass their runtime and SBOM checks,
+   including the DMZ Nginx listener and HTTP response;
 5. the public pfSense configuration drive builds twice with the same digest and
    semantically matches `config/pfsense-public.xml`;
 6. the live GNS3 gate passes for counts 0, 1, 3, and 10 without leftovers;

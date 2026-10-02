@@ -26,6 +26,7 @@ verify-images:
 docker-images:
 	docker build --pull --tag byot-cps/ubuntu18-lab:latest Dockerfiles/ubuntu18-lab
 	docker build --pull --tag byot-cps/ubuntu24-lab:latest Dockerfiles/ubuntu24-lab
+	docker build --pull --tag byot-cps/ubuntu24-nginx:latest Dockerfiles/ubuntu24-nginx
 
 container-sboms: docker-images
 	$(PYTHON) src/generate_container_sboms.py

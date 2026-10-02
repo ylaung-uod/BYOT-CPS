@@ -39,10 +39,10 @@ started QEMU process alone does not prove installation or configuration restore.
 ## Verification results
 
 On 2026-09-04, the staged v1.0.0 candidate passed `make release-check` with
-95 unit tests, syntax and static analysis, secret and Dockerfile scans, both
+97 unit tests, syntax and static analysis, secret and Dockerfile scans, three
 container builds, deterministic SBOM comparison, runtime policy assertions, and
-inspection of all 74 source-archive files. The deterministic minimal
-reproduction archive contains 43 files required by end users; development tests
+inspection of all 78 source-archive files. The deterministic minimal
+reproduction archive contains 47 files required by end users; development tests
 and CI policy remain in the source repository for auditability. While the
 repository is private, the self-referential v1.0.0 release URL is excluded
 from anonymous link checking and is instead verified through the GitHub API when

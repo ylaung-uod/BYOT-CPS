@@ -5,8 +5,9 @@
 BYOT-CPS rebuilds a 16-node cyber-physical security lab from declarative files
 and the GNS3 2.2 REST API. It provides a pfSense firewall, four network segments,
 benign Ubuntu diagnostic containers, a configurable compromised-IoT pool, exact
-link assignments, checksummed external inputs, deterministic configuration
-media, tracked container SBOMs, and automated verification.
+link assignments, an automatically started Nginx service on the DMZ web server,
+checksummed external inputs, deterministic configuration media, tracked
+container SBOMs, and automated verification.
 
 The repository reproduces topology and declared appliance inputs. It does not
 reproduce the approximately 93 GiB of mutable guest state from the source

@@ -39,7 +39,8 @@ FIREWALL -- CPS-SWITCH -- CPS-OPERATOR
 
 `FIREWALL` is a pfSense QEMU node. `ISP` is the GNS3 NAT node. The four switches
 are GNS3 Ethernet switches. All Ubuntu roles are lightweight Docker nodes; role
-names do not imply that bot, C2, exploit, or malware software is present.
+names do not imply that bot, C2, exploit, or malware software is present. The
+declared `DMZ-WEB-SERVER` image starts a benign Nginx service on TCP/80.
 
 ## Interface and segment model
 

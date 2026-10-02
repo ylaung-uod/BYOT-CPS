@@ -59,6 +59,9 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             "Dockerfiles/ubuntu24-lab/Dockerfile",
             "Dockerfiles/ubuntu24-lab/entrypoint.sh",
             "Dockerfiles/ubuntu24-lab/isrg-root-x1.pem",
+            "Dockerfiles/ubuntu24-nginx/Dockerfile",
+            "Dockerfiles/ubuntu24-nginx/entrypoint.sh",
+            "Dockerfiles/ubuntu24-nginx/isrg-root-x1.pem",
             "LICENSE",
             "Makefile",
             "NOTICE.md",
@@ -81,6 +84,7 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             "requirements.txt",
             "sbom/ubuntu18-lab.spdx.json",
             "sbom/ubuntu24-lab.spdx.json",
+            "sbom/ubuntu24-nginx.spdx.json",
             "src/create_templates.py",
             "src/create_topology.py",
             "src/fetch_help.py",
@@ -150,7 +154,7 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
 
     def test_release_metadata_matches_the_snapshot_repository(self):
         notes = (ROOT / "docs" / "RELEASE-NOTES-v1.0.0.md").read_text()
-        self.assertIn("95 unit tests", notes)
+        self.assertIn("97 unit tests", notes)
         self.assertIn("single root snapshot", notes)
         identities = subprocess.run(
             ["git", "log", "--format=%an%x00%ae"],

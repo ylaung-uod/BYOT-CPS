@@ -15,6 +15,8 @@
       "required_tools": ["curl", "ip", "ping", "ifconfig", "nc", "sshd", "ps", "sudo", "tcpdump"],
       "allowed_listeners": ["tcp:22"],
       "allowed_processes": ["sleep", "sshd"],
+      "required_listeners": ["tcp:22"],
+      "required_processes": ["sleep", "sshd"],
       "sbom": "sbom/ubuntu18-lab.spdx.json"
     },
     {
@@ -29,7 +31,26 @@
       "required_tools": ["curl", "ip", "ping", "ifconfig", "nc", "sshd", "ps", "sudo", "tcpdump"],
       "allowed_listeners": ["tcp:22"],
       "allowed_processes": ["sleep", "sshd"],
+      "required_listeners": ["tcp:22"],
+      "required_processes": ["sleep", "sshd"],
       "sbom": "sbom/ubuntu24-lab.spdx.json"
+    },
+    {
+      "key": "ubuntu24-nginx",
+      "image": "byot-cps/ubuntu24-nginx:latest",
+      "base": "ubuntu:24.04",
+      "base_digest": "sha256:33ceb71981b602c1a7443a53469e4dba065f7503eab3078a2d7a57a2ab987517",
+      "snapshot": "20260903T000000Z",
+      "ubuntu_version": "24.04",
+      "default_user": "lab",
+      "required_group": "sudo",
+      "required_tools": ["curl", "ip", "ping", "ifconfig", "nc", "nginx", "sshd", "ps", "sudo", "tcpdump"],
+      "allowed_listeners": ["tcp:22", "tcp:80"],
+      "allowed_processes": ["nginx", "sleep", "sshd"],
+      "required_listeners": ["tcp:22", "tcp:80"],
+      "required_processes": ["nginx", "sleep", "sshd"],
+      "http_body_contains": "BYOT-CPS DMZ web server",
+      "sbom": "sbom/ubuntu24-nginx.spdx.json"
     }
   ]
 }

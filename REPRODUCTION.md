@@ -80,7 +80,8 @@ and `12 + N` links.
 
 ## Optional container verification
 
-To rebuild both containers and verify their tracked SBOMs and runtime policy:
+To rebuild all three containers and verify their tracked SBOMs and runtime
+policy, including the DMZ Nginx HTTP response:
 
 ```bash
 make phase4-verify

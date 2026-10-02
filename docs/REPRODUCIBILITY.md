@@ -8,7 +8,8 @@ BYOT-CPS declaratively represents:
   placement;
 - GNS3 template payloads for the pfSense firewall and Ubuntu-based lab
   containers;
-- Dockerfiles and startup behavior for benign container hosts;
+- Dockerfiles and startup behavior for benign container hosts, including the
+  automatically started Nginx service on `DMZ-WEB-SERVER`;
 - a synthetic public pfSense configuration with four declared interfaces,
   lab-only addresses, DHCP pools, and basic outbound rules;
 - deterministic generation of the pfSense configuration-restore drive; and
@@ -29,7 +30,7 @@ The public release does not contain or reproduce:
 
 - linked-clone overlays or mutable state from the source virtual machines;
 - software, accounts, web content, or services installed interactively in the
-  source guests;
+  source guests, apart from the explicitly declared synthetic Nginx service;
 - operational bot, command-and-control, exploit, or malware payloads;
 - production credentials, password hashes, certificates, private keys, VPN
   material, or firewall policy; or

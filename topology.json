@@ -335,7 +335,7 @@
       "y": -105,
       "z": 1,
       "symbol": ":/symbols/affinity/square/red/client_vm.svg",
-      "template": "ubuntu24_lab"
+      "template": "ubuntu24_web"
     },
     {
       "name": "C2-SIMULATOR",

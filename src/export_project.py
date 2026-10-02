@@ -19,7 +19,7 @@ CONTAINER_TEMPLATES = {
     "EXTERNAL-PC": "ubuntu24_lab",
     "IT-ADMIN": "ubuntu24_lab",
     "ExploitPC": "ubuntu24_lab",
-    "WEB-SERVER": "ubuntu24_lab",
+    "WEB-SERVER": "ubuntu24_web",
 }
 SWITCH_NAMES = {
     "GRAY-SWITCH": "WAN-SWITCH",

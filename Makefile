@@ -51,7 +51,7 @@ secret-scan:
 	  docker run --rm -v "$$tmp:/repo:ro" $(GITLEAKS_IMAGE) detect --source=/repo --no-git --redact --config=/repo/.gitleaks.toml --exit-code=1
 
 dockerfile-lint:
-	docker run --rm -v "$(CURDIR):/repo:ro" $(HADOLINT_IMAGE) hadolint --config /repo/.hadolint.yaml --ignore SC2016 /repo/Dockerfiles/ubuntu18-lab/Dockerfile /repo/Dockerfiles/ubuntu24-lab/Dockerfile
+	docker run --rm -v "$(CURDIR):/repo:ro" $(HADOLINT_IMAGE) hadolint --config /repo/.hadolint.yaml --ignore SC2016 /repo/Dockerfiles/ubuntu18-lab/Dockerfile /repo/Dockerfiles/ubuntu24-lab/Dockerfile /repo/Dockerfiles/ubuntu24-nginx/Dockerfile
 
 archive-inspect:
 	@git archive --format=tar "$$(git write-tree)" | $(PYTHON) src/inspect_archive.py -
@@ -85,6 +85,7 @@ verify-images:
 docker-images:
 	docker build --pull --tag byot-cps/ubuntu18-lab:latest Dockerfiles/ubuntu18-lab
 	docker build --pull --tag byot-cps/ubuntu24-lab:latest Dockerfiles/ubuntu24-lab
+	docker build --pull --tag byot-cps/ubuntu24-nginx:latest Dockerfiles/ubuntu24-nginx
 
 container-sboms: docker-images
 	$(PYTHON) src/generate_container_sboms.py

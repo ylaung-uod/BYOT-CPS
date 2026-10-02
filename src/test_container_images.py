@@ -61,9 +61,22 @@ def validate_probe(declaration, probe):
     unexpected_listeners = sorted(set(probe["listeners"]) - set(declaration["allowed_listeners"]))
     if unexpected_listeners:
         errors.append(f"unexpected listener(s): {unexpected_listeners}")
+    missing_listeners = sorted(
+        set(declaration.get("required_listeners", [])) - set(probe["listeners"])
+    )
+    if missing_listeners:
+        errors.append(f"missing required listener(s): {missing_listeners}")
     unexpected_processes = sorted(set(probe["processes"]) - set(declaration["allowed_processes"]))
     if unexpected_processes:
         errors.append(f"unexpected service process(es): {unexpected_processes}")
+    missing_processes = sorted(
+        set(declaration.get("required_processes", [])) - set(probe["processes"])
+    )
+    if missing_processes:
+        errors.append(f"missing required process(es): {missing_processes}")
+    expected_http = declaration.get("http_body_contains")
+    if expected_http and expected_http not in probe.get("http_body", ""):
+        errors.append(f"HTTP response is missing expected text: {expected_http!r}")
     if probe["suspicious_files"]:
         errors.append(f"suspicious executable name(s): {probe['suspicious_files']}")
     return errors
@@ -131,6 +144,13 @@ def collect_probe(declaration):
             for name in declaration["required_tools"]
         }
 
+        http_body = ""
+        if declaration.get("http_body_contains"):
+            http_body = docker_exec(
+                container,
+                ["curl", "--fail", "--silent", "--show-error", "http://127.0.0.1/"],
+            ).stdout
+
         listeners = set()
         for line in docker_exec(container, ["ss", "-H", "-lntu"]).stdout.splitlines():
             fields = line.split()
@@ -174,6 +194,7 @@ def collect_probe(declaration):
             "sudo_with_password": with_password,
             "ssh": ssh,
             "tools": tools,
+            "http_body": http_body,
             "listeners": sorted(listeners),
             "processes": sorted(processes),
             "suspicious_files": suspicious,

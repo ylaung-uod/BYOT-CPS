@@ -209,7 +209,8 @@ This command performs the complete prerequisite chain:
 
 1. Validates the topology.
 2. Prepares and verifies the pfSense installer and blank disk.
-3. Builds the pinned Ubuntu 18.04 and 24.04 Docker images.
+3. Builds the three pinned Ubuntu container images, including the dedicated
+   Ubuntu 24.04 Nginx image for `DMZ-WEB-SERVER`.
 4. Validates the selected public or private pfSense XML.
 5. Builds and installs `pfsense-config.img`.
 6. Creates missing GNS3 node templates and reconciles stale owned templates.
@@ -220,10 +221,13 @@ Confirm these templates under **Edit → Preferences** in GNS3:
 byot-cps - pfSense 2.8.1 Reproducible
 byot-cps - Ubuntu 18.04 Lab Container
 byot-cps - Ubuntu 24.04 Lab Container
+byot-cps - Ubuntu 24.04 Nginx Web Server
 ```
 
 Template reconciliation is idempotent: matching templates are left unchanged,
 and stale same-name BYOT-CPS templates are updated to the declared payload.
+The Nginx template starts both SSH on TCP/22 and HTTP on TCP/80 whenever the
+`DMZ-WEB-SERVER` container starts.
 
 ## 7. Run the automated smoke test
 
@@ -360,6 +364,15 @@ sudo ip address add 172.20.0.201/24 dev eth0
 sudo ip link set eth0 up
 sudo ip route replace default via 172.20.0.1
 ```
+
+After assigning that address, verify the automatically started Nginx service
+from a reachable peer:
+
+```bash
+curl http://172.20.0.201/
+```
+
+The response contains `BYOT-CPS DMZ web server`.
 
 On a CPS container, choose a unique address outside the configured DHCP pool, for example:
 

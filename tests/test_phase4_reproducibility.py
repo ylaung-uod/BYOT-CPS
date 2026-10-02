@@ -9,8 +9,8 @@ sys.path.insert(0, str(ROOT / "src"))
 
 
 class PhaseFourReproducibilityTests(unittest.TestCase):
-    def test_both_dockerfiles_use_the_declared_ubuntu_snapshot(self):
-        for image in ("ubuntu18-lab", "ubuntu24-lab"):
+    def test_all_dockerfiles_use_the_declared_ubuntu_snapshot(self):
+        for image in ("ubuntu18-lab", "ubuntu24-lab", "ubuntu24-nginx"):
             with self.subTest(image=image):
                 dockerfile = (ROOT / "Dockerfiles" / image / "Dockerfile").read_text()
                 self.assertIn("ARG UBUNTU_SNAPSHOT=20260903T000000Z", dockerfile)
@@ -21,7 +21,7 @@ class PhaseFourReproducibilityTests(unittest.TestCase):
         manifest = json.loads((ROOT / "container_images.json").read_text())
         expected_ca = manifest["bootstrap_ca_sha256"]
         self.assertEqual(expected_ca, "22b557a27055b33606b6559f37703928d3e4ad79f110b407d04986e1843543d1")
-        for image in ("ubuntu18-lab", "ubuntu24-lab"):
+        for image in ("ubuntu18-lab", "ubuntu24-lab", "ubuntu24-nginx"):
             certificate = ROOT / "Dockerfiles" / image / "isrg-root-x1.pem"
             self.assertEqual(hashlib.sha256(certificate.read_bytes()).hexdigest(), expected_ca)
 
@@ -88,6 +88,47 @@ class PhaseFourReproducibilityTests(unittest.TestCase):
         self.assertTrue(any("listener" in error for error in errors))
         self.assertTrue(any("suspicious" in error for error in errors))
 
+    def test_runtime_probe_requires_declared_nginx_service(self):
+        from test_container_images import validate_probe
+
+        declaration = {
+            "ubuntu_version": "24.04",
+            "default_user": "lab",
+            "required_group": "sudo",
+            "required_tools": ["nginx", "sshd", "sudo"],
+            "allowed_listeners": ["tcp:22", "tcp:80"],
+            "allowed_processes": ["nginx", "sleep", "sshd"],
+            "required_listeners": ["tcp:22", "tcp:80"],
+            "required_processes": ["nginx", "sleep", "sshd"],
+            "http_body_contains": "BYOT-CPS DMZ web server",
+        }
+        probe = {
+            "ubuntu_version": "24.04",
+            "pid1_user": "lab",
+            "groups": ["lab", "sudo"],
+            "sudo_without_password": False,
+            "sudo_with_password": True,
+            "ssh": {
+                "passwordauthentication": "yes",
+                "permitrootlogin": "no",
+                "usepam": "yes",
+            },
+            "tools": {name: True for name in declaration["required_tools"]},
+            "listeners": ["tcp:22"],
+            "processes": ["sleep", "sshd"],
+            "http_body": "",
+            "suspicious_files": [],
+        }
+        errors = validate_probe(declaration, probe)
+        self.assertTrue(any("required listener" in error for error in errors))
+        self.assertTrue(any("required process" in error for error in errors))
+        self.assertTrue(any("HTTP response" in error for error in errors))
+
+        probe["listeners"].append("tcp:80")
+        probe["processes"].append("nginx")
+        probe["http_body"] = "BYOT-CPS DMZ web server"
+        self.assertEqual(validate_probe(declaration, probe), [])
+
     def test_makefile_exposes_sbom_and_runtime_verification_targets(self):
         makefile = (ROOT / "Makefile").read_text()
         self.assertIn("container-sboms: docker-images", makefile)
@@ -107,6 +148,7 @@ class PhaseFourReproducibilityTests(unittest.TestCase):
             "container_images.json",
             "sbom/ubuntu18-lab.spdx.json",
             "sbom/ubuntu24-lab.spdx.json",
+            "sbom/ubuntu24-nginx.spdx.json",
             "make container-sboms",
             "make container-sboms-check",
             "make container-runtime-test",

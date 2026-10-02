@@ -104,6 +104,33 @@
         "template_type": "docker",
         "usage": "Plain Ubuntu 24.04 lab container with networking tools and SSH on TCP/22. Credentials: lab / lab. The lab user has password-protected sudo. Root SSH login is disabled."
       }
+    },
+    {
+      "key": "ubuntu24_web",
+      "name": "byot-cps - Ubuntu 24.04 Nginx Web Server",
+      "payload": {
+        "adapters": 1,
+        "builtin": false,
+        "category": "guest",
+        "compute_id": "local",
+        "console_auto_start": false,
+        "console_http_path": "/",
+        "console_http_port": 80,
+        "console_resolution": "1024x768",
+        "console_type": "telnet",
+        "custom_adapters": [],
+        "default_name_format": "{name}-{0}",
+        "environment": "",
+        "extra_hosts": "",
+        "extra_volumes": [],
+        "image": "byot-cps/ubuntu24-nginx:latest",
+        "mac_address": "",
+        "name": "byot-cps - Ubuntu 24.04 Nginx Web Server",
+        "start_command": "",
+        "symbol": ":/symbols/docker_guest.svg",
+        "template_type": "docker",
+        "usage": "Ubuntu 24.04 DMZ web server with Nginx on HTTP TCP/80 and SSH on TCP/22. Both services start with the container. Credentials: lab / lab. The lab user has password-protected sudo. Root SSH login is disabled."
+      }
     }
   ]
 }

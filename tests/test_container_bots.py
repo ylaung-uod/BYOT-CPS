@@ -46,10 +46,23 @@ class ContainerBotTemplateTests(unittest.TestCase):
             self.assertEqual(node["node_type"], "docker")
             self.assertEqual(node["template"], "ubuntu24_lab")
 
-    def test_web_server_uses_ubuntu_24_docker_template(self):
+    def test_web_server_uses_dedicated_nginx_docker_template(self):
         node = next(n for n in self.topology["nodes"] if n["name"] == "DMZ-WEB-SERVER")
         self.assertEqual(node["node_type"], "docker")
-        self.assertEqual(node["template"], "ubuntu24_lab")
+        self.assertEqual(node["template"], "ubuntu24_web")
+
+    def test_nginx_template_and_image_are_declared(self):
+        self.assertIn("ubuntu24_web", self.templates)
+        payload = self.templates["ubuntu24_web"]["payload"]
+        self.assertEqual(payload["template_type"], "docker")
+        self.assertEqual(payload["image"], "byot-cps/ubuntu24-nginx:latest")
+        self.assertIn("HTTP", payload["usage"])
+        dockerfile = ROOT / "Dockerfiles/ubuntu24-nginx/Dockerfile"
+        entrypoint = ROOT / "Dockerfiles/ubuntu24-nginx/entrypoint.sh"
+        self.assertTrue(dockerfile.is_file())
+        self.assertTrue(entrypoint.is_file())
+        self.assertIn("nginx", dockerfile.read_text())
+        self.assertIn("/usr/sbin/nginx", entrypoint.read_text())
 
     def test_docker_template_uses_local_lab_image(self):
         payload = self.templates["ubuntu18_lab"]["payload"]
@@ -83,6 +96,7 @@ class ContainerBotTemplateTests(unittest.TestCase):
     def test_make_builds_lab_image_before_creating_templates(self):
         makefile = (ROOT / "Makefile").read_text()
         self.assertIn("docker-images:", makefile)
+        self.assertIn("byot-cps/ubuntu24-nginx:latest", makefile)
         templates_rule = next(line for line in makefile.splitlines() if line.startswith("templates:"))
         self.assertIn("docker-images", templates_rule)
 
@@ -204,10 +218,10 @@ class ContainerBotTemplateTests(unittest.TestCase):
             stream.flush()
             node = export(stream.name)["nodes"][0]
         self.assertEqual(node["node_type"], "docker")
-        self.assertEqual(node["template"], "ubuntu24_lab")
+        self.assertEqual(node["template"], "ubuntu24_web")
         self.assertEqual(node["name"], "DMZ-WEB-SERVER")
     def test_all_container_images_define_dummy_sudo_user(self):
-        for version in ("ubuntu18-lab", "ubuntu24-lab"):
+        for version in ("ubuntu18-lab", "ubuntu24-lab", "ubuntu24-nginx"):
             with self.subTest(version=version):
                 dockerfile = (ROOT / f"Dockerfiles/{version}/Dockerfile").read_text()
                 self.assertIn("sudo", dockerfile)
@@ -222,11 +236,11 @@ class ContainerBotTemplateTests(unittest.TestCase):
                 entrypoint = (ROOT / f"Dockerfiles/{version}/entrypoint.sh").read_text()
                 self.assertIn("exec chroot --userspec=lab:lab --groups=sudo / sleep infinity", entrypoint)
                 self.assertNotIn("exec su -s /bin/sh lab", entrypoint)
-        for key in ("ubuntu18_lab", "ubuntu24_lab"):
+        for key in ("ubuntu18_lab", "ubuntu24_lab", "ubuntu24_web"):
             usage = self.templates[key]["payload"]["usage"]
             self.assertIn("lab / lab", usage)
     def test_all_container_images_run_password_authenticated_ssh(self):
-        for version in ("ubuntu18-lab", "ubuntu24-lab"):
+        for version in ("ubuntu18-lab", "ubuntu24-lab", "ubuntu24-nginx"):
             with self.subTest(version=version):
                 dockerfile = (ROOT / f"Dockerfiles/{version}/Dockerfile").read_text()
                 entrypoint = (ROOT / f"Dockerfiles/{version}/entrypoint.sh").read_text()
@@ -238,7 +252,7 @@ class ContainerBotTemplateTests(unittest.TestCase):
                 self.assertIn("EXPOSE 22", dockerfile)
                 self.assertIn("ssh-keygen -A", entrypoint)
                 self.assertIn("/usr/sbin/sshd", entrypoint)
-        for key in ("ubuntu18_lab", "ubuntu24_lab"):
+        for key in ("ubuntu18_lab", "ubuntu24_lab", "ubuntu24_web"):
             self.assertIn("SSH", self.templates[key]["payload"]["usage"])
 
 
