@@ -28,8 +28,8 @@ class ConfigurableCompromisedIoTCountTests(unittest.TestCase):
         result = materialize_compromised_iot_count(self.spec, 0)
         self.assertEqual(self.node_names(result), [])
         self.assertEqual(self.cps_port_for(result, "RED-TEAM-HOST"), 3)
-        self.assertEqual(len(result["nodes"]), 13)
-        self.assertEqual(len(result["links"]), 12)
+        self.assertEqual(len(result["nodes"]), 14)
+        self.assertEqual(len(result["links"]), 13)
 
     def test_one_node_uses_01_suffix(self):
         result = materialize_compromised_iot_count(self.spec, 1)

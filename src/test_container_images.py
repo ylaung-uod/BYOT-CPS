@@ -58,6 +58,14 @@ def validate_probe(declaration, probe):
     missing_tools = [name for name in declaration["required_tools"] if not probe["tools"].get(name)]
     if missing_tools:
         errors.append(f"missing required tools: {missing_tools}")
+    if declaration.get("resolver_policy") == "default_gateway":
+        gateway = probe.get("default_gateway")
+        if not gateway:
+            errors.append("default gateway is unavailable for resolver policy")
+        elif probe.get("resolvers") != [gateway]:
+            errors.append(
+                f"resolver {probe.get('resolvers')!r}, expected default gateway {gateway!r}"
+            )
     unexpected_listeners = sorted(set(probe["listeners"]) - set(declaration["allowed_listeners"]))
     if unexpected_listeners:
         errors.append(f"unexpected listener(s): {unexpected_listeners}")
@@ -86,10 +94,32 @@ def collect_probe(declaration):
     container = "byot-cps-runtime-" + uuid.uuid4().hex[:12]
     created = False
     try:
-        result = run(["docker", "run", "-d", "--rm", "--name", container, declaration["image"]])
+        result = run(
+            [
+                "docker", "run", "-d", "--rm", "--network", "none",
+                "--cap-add", "NET_ADMIN", "--name", container, declaration["image"],
+            ]
+        )
         if result.returncode:
             raise RuntimeError(result.stderr.strip())
         created = True
+        for _ in range(30):
+            logs = run(["docker", "logs", container])
+            if "Waiting for default route before starting services" in logs.stdout:
+                break
+            time.sleep(0.2)
+        else:
+            raise RuntimeError("entrypoint did not enter the default-route wait state")
+        for command in (
+            ["ip", "link", "add", "dns0", "type", "dummy"],
+            ["ip", "address", "add", "192.0.2.2/24", "dev", "dns0"],
+            ["ip", "link", "set", "dns0", "up"],
+            [
+                "ip", "route", "replace", "default", "via", "192.0.2.1",
+                "dev", "dns0", "onlink",
+            ],
+        ):
+            docker_exec(container, command)
         for _ in range(30):
             ready = docker_exec(container, ["sh", "-c", "ss -H -lnt | grep -q ':22 '"], check=False)
             if ready.returncode == 0:
@@ -97,6 +127,27 @@ def collect_probe(declaration):
             time.sleep(0.2)
         else:
             raise RuntimeError("SSH did not start within six seconds")
+
+        for _ in range(30):
+            route = docker_exec(
+                container,
+                ["ip", "-4", "route", "show", "default"],
+            ).stdout
+            gateway_match = re.search(r"\bvia\s+(\S+)", route)
+            resolver_lines = docker_exec(
+                container,
+                ["cat", "/etc/resolv.conf"],
+            ).stdout.splitlines()
+            resolvers = [
+                fields[1]
+                for line in resolver_lines
+                if len(fields := line.split()) == 2 and fields[0] == "nameserver"
+            ]
+            if gateway_match and resolvers == [gateway_match.group(1)]:
+                break
+            time.sleep(0.2)
+        else:
+            raise RuntimeError("default-gateway DNS was not installed within six seconds")
 
         os_release = docker_exec(container, ["cat", "/etc/os-release"]).stdout
         version_match = re.search(r'^VERSION_ID="?([^"\n]+)"?$', os_release, re.MULTILINE)
@@ -143,6 +194,18 @@ def collect_probe(declaration):
             == 0
             for name in declaration["required_tools"]
         }
+
+        default_route = docker_exec(
+            container,
+            ["ip", "-4", "route", "show", "default"],
+        ).stdout.strip()
+        gateway_match = re.search(r"\bvia\s+(\S+)", default_route)
+        default_gateway = gateway_match.group(1) if gateway_match else ""
+        resolvers = []
+        for line in docker_exec(container, ["cat", "/etc/resolv.conf"]).stdout.splitlines():
+            fields = line.split()
+            if len(fields) == 2 and fields[0] == "nameserver":
+                resolvers.append(fields[1])
 
         http_body = ""
         if declaration.get("http_body_contains"):
@@ -194,6 +257,8 @@ def collect_probe(declaration):
             "sudo_with_password": with_password,
             "ssh": ssh,
             "tools": tools,
+            "default_gateway": default_gateway,
+            "resolvers": resolvers,
             "http_body": http_body,
             "listeners": sorted(listeners),
             "processes": sorted(processes),

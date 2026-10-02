@@ -306,6 +306,29 @@
       "template": "ubuntu24_lab"
     },
     {
+      "name": "HOST-ACCESS",
+      "node_type": "cloud",
+      "x": -330,
+      "y": -30,
+      "z": 1,
+      "symbol": ":/symbols/cloud.svg",
+      "properties": {
+        "interfaces": [],
+        "ports_mapping": [
+          {
+            "interface": "${MGMT_INTERFACE}",
+            "name": "${MGMT_INTERFACE}",
+            "port_number": 0,
+            "type": "ethernet"
+          }
+        ],
+        "remote_console_host": "",
+        "remote_console_http_path": "/",
+        "remote_console_port": 23,
+        "remote_console_type": "none"
+      }
+    },
+    {
       "name": "IoT",
       "node_type": "cloud",
       "x": -229,
@@ -465,6 +488,20 @@
           "node": "MGMT-SWITCH",
           "adapter_number": 0,
           "port_number": 1
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "node": "HOST-ACCESS",
+          "adapter_number": 0,
+          "port_number": 0
+        },
+        {
+          "node": "MGMT-SWITCH",
+          "adapter_number": 0,
+          "port_number": 2
         }
       ]
     },

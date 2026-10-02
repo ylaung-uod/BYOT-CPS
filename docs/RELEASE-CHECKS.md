@@ -38,7 +38,7 @@ data validation, all unit tests, staged and unstaged whitespace checks, local
 and external Markdown links, Python syntax and static analysis, workflow
 linting, secret scanning, Dockerfile linting, source-archive inspection,
 deterministic reproduction-archive construction, deterministic SBOM comparison,
-container builds, and runtime policy assertions.
+container builds, and runtime policy assertions including default-gateway DNS.
 
 The command downloads pinned quality-tool and base-container images when they are
 not already available. It does not create or alter a GNS3 project. Success ends

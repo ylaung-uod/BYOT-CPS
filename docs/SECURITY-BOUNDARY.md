@@ -25,7 +25,16 @@ about software installed in those containers.
   processes appear.
 
 The public pfSense baseline permits outbound IPv4 traffic from the Management,
-DMZ, and CPS segments. It is a lab policy, not a hardened production policy.
+DMZ, and CPS segments. It also exposes recursive DNS only on those three
+internal interfaces, not WAN. It is a lab policy, not a hardened production
+policy.
+
+The baseline places block rules before the DMZ and CPS pass rules to prevent
+those segments from initiating connections toward management. The
+`HOST-ACCESS` TAP nevertheless places the Ubuntu host directly on the same
+Layer-2 segment as `MGMT-ADMIN`; use a stateful host firewall to block unsolicited
+input on `byot-mgmt`. Host-initiated routed traffic can still reach other lab
+segments when the operator adds a route through pfSense.
 
 ## Dummy credentials
 
@@ -61,7 +70,8 @@ Private pfSense input belongs under the ignored `secrets/` directory with mode
 
 The container runtime gate verifies the expected Ubuntu version and workload
 user, password-protected sudo, SSH policy, required tools, allowed listeners,
-allowed service processes, and bounded suspicious executable-name indicators.
+allowed service processes, the default-gateway resolver policy, and bounded
+suspicious executable-name indicators.
 These checks detect declared policy violations but cannot prove the absence of
 all malicious behavior.
 

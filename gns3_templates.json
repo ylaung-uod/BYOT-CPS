@@ -6,7 +6,7 @@
       "payload": {
         "compute_id": "local",
         "name": "byot-cps - pfSense 2.8.1 Reproducible",
-        "usage": "Install pfSense with Configuration Restore from the attached FAT config drive. Credentials after restore: admin / admin. Adapter mapping: WAN em0, LAN em1, OPT1 em2, OPT2 em3.",
+        "usage": "Install pfSense with Configuration Restore from the attached FAT config drive. Credentials after restore: admin / admin. Adapter mapping: WAN em0, LAN em1, OPT1 em2, OPT2 em3. Unbound DNS Resolver listens on LAN, OPT1, and OPT2.",
         "builtin": false,
         "category": "firewall",
         "symbol": ":/symbols/classic/firewall.svg",
@@ -75,7 +75,7 @@
         "start_command": "",
         "symbol": ":/symbols/docker_guest.svg",
         "template_type": "docker",
-        "usage": "Plain Ubuntu 18.04 lab container with SSH on TCP/22. Credentials: lab / lab. The lab user has password-protected sudo. Root SSH login is disabled. No bot software is included."
+        "usage": "Plain Ubuntu 18.04 lab container with SSH on TCP/22. Credentials: lab / lab. The lab user has password-protected sudo. Root SSH login is disabled. After a default route appears, the entrypoint uses its gateway as DNS. No bot software is included."
       }
     },
     {
@@ -102,7 +102,7 @@
         "start_command": "",
         "symbol": ":/symbols/docker_guest.svg",
         "template_type": "docker",
-        "usage": "Plain Ubuntu 24.04 lab container with networking tools and SSH on TCP/22. Credentials: lab / lab. The lab user has password-protected sudo. Root SSH login is disabled."
+        "usage": "Plain Ubuntu 24.04 lab container with networking tools and SSH on TCP/22. Credentials: lab / lab. The lab user has password-protected sudo. Root SSH login is disabled. After a default route appears, the entrypoint uses its gateway as DNS."
       }
     },
     {
@@ -129,7 +129,7 @@
         "start_command": "",
         "symbol": ":/symbols/docker_guest.svg",
         "template_type": "docker",
-        "usage": "Ubuntu 24.04 DMZ web server with Nginx on HTTP TCP/80 and SSH on TCP/22. Both services start with the container. Credentials: lab / lab. The lab user has password-protected sudo. Root SSH login is disabled."
+        "usage": "Ubuntu 24.04 DMZ web server with Nginx on HTTP TCP/80 and SSH on TCP/22. After a default route appears, the entrypoint uses its gateway as DNS and starts both services. Credentials: lab / lab. The lab user has password-protected sudo. Root SSH login is disabled."
       }
     }
   ]

@@ -2,12 +2,13 @@
 
 ## Purpose
 
-BYOT-CPS rebuilds a 16-node cyber-physical security lab from declarative files
+BYOT-CPS rebuilds a 17-node cyber-physical security lab from declarative files
 and the GNS3 2.2 REST API. It provides a pfSense firewall, four network segments,
 benign Ubuntu diagnostic containers, a configurable compromised-IoT pool, exact
-link assignments, an automatically started Nginx service on the DMZ web server,
-checksummed external inputs, deterministic configuration media, tracked
-container SBOMs, and automated verification.
+link assignments, a route-gated Nginx service on the DMZ web server,
+pfSense-provided DNS for internal containers, checksummed external inputs,
+deterministic configuration media, tracked container SBOMs, and automated
+verification.
 
 The repository reproduces topology and declared appliance inputs. It does not
 reproduce the approximately 93 GiB of mutable guest state from the source
@@ -49,8 +50,8 @@ physical host interface. Report vulnerabilities using [`SECURITY.md`](SECURITY.m
 ## Architecture
 
 The default topology contains one pfSense QEMU firewall, one GNS3 NAT node, four
-Ethernet switches, nine Ubuntu Docker containers, one host-interface cloud node,
-and 15 links. The network segments are:
+Ethernet switches, nine Ubuntu Docker containers, two host-interface cloud
+nodes, and 16 links. The network segments are:
 
 | Segment | pfSense adapter | Address | Main roles |
 |---|---:|---|---|
@@ -59,9 +60,11 @@ and 15 links. The network segments are:
 | DMZ | `em2` | `172.20.0.1/24` | web server |
 | CPS | `em3` | `10.0.0.1/24` | operator, IoT interface, red-team host, compromised-IoT pool |
 
-For a pool of `N` compromised-IoT containers, the project has `13 + N` nodes
-and `12 + N` links. The default is three; zero and larger values are supported.
-`IOT_INTERFACE=docker0` is the portable host-only default.
+For a pool of `N` compromised-IoT containers, the project has `14 + N` nodes
+and `13 + N` links. The default is three; zero and larger values are supported.
+`IOT_INTERFACE=docker0` is the portable IoT default. `MGMT_INTERFACE=byot-mgmt`
+selects a dedicated host-only TAP connected only to `MGMT-SWITCH`, allowing the
+host browser to reach the pfSense WebGUI at `https://192.168.99.1/`.
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the topology, interface
 model, exact ports, component layers, and build flow.
@@ -78,6 +81,10 @@ make validate
 make fetch-help
 make prepare-images
 make templates
+sudo ip tuntap add dev byot-mgmt mode tap user "$USER"
+sudo ip addr add 192.168.99.2/24 dev byot-mgmt
+sudo ip link set byot-mgmt up
+MGMT_INTERFACE=byot-mgmt \
 IOT_INTERFACE=docker0 make topology
 make smoke-test
 ```
@@ -90,7 +97,7 @@ remain available in the source repository for independent audit.
 
 `make templates` verifies external images, builds the pinned containers, creates
 the pfSense configuration drive, and reconciles complete GNS3 template payloads.
-The smoke test creates a separate temporary project, checks 16 nodes and 15
+The smoke test creates a separate temporary project, checks 17 nodes and 16
 links, starts the firewall and all containers, verifies status, and deletes the
 project.
 

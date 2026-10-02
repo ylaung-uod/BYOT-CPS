@@ -32,8 +32,8 @@ for node in spec["nodes"]:
             f"node {node['name']!r} references unknown template {node['template']!r}",
         )
 counts = Counter(n["node_type"] for n in spec["nodes"])
-require(len(spec["nodes"]) == 16, f"expected 16 nodes, found {len(spec['nodes'])}")
-require(len(spec["links"]) == 15, f"expected 15 links, found {len(spec['links'])}")
-expected_counts = {"cloud": 1, "docker": 9, "ethernet_switch": 4, "nat": 1, "qemu": 1}
+require(len(spec["nodes"]) == 17, f"expected 17 nodes, found {len(spec['nodes'])}")
+require(len(spec["links"]) == 16, f"expected 16 links, found {len(spec['links'])}")
+expected_counts = {"cloud": 2, "docker": 9, "ethernet_switch": 4, "nat": 1, "qemu": 1}
 require(counts == expected_counts, f"unexpected node type counts: {counts}")
 print("valid:", len(spec["nodes"]), "nodes,", len(spec["links"]), "links,", dict(sorted(counts.items())))

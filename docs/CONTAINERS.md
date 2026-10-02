@@ -7,10 +7,13 @@ BYOT-CPS builds three benign container images:
 - `byot-cps/ubuntu24-nginx:latest`
 
 The first two are diagnostic hosts. The dedicated Nginx image is used only by
-`DMZ-WEB-SERVER`; it starts SSH on TCP/22 and Nginx on TCP/80 with a synthetic
-BYOT-CPS landing page.
+`DMZ-WEB-SERVER`; after default-route DNS setup, it starts SSH on TCP/22 and
+Nginx on TCP/80 with a synthetic BYOT-CPS landing page.
 
 Their build and runtime expectations are declared in `container_images.json`.
+Each entrypoint waits for a default route and installs that route's gateway as
+the sole resolver in `/etc/resolv.conf`. In GNS3, this makes the container use
+the pfSense address on its own segment after the operator configures its route.
 
 ## Pinned package inputs
 
@@ -66,6 +69,8 @@ checks:
 - the documented `lab` password enables sudo;
 - SSH enables password authentication, disables root login, and uses PAM;
 - all required network and diagnostic tools exist;
+- `/etc/resolv.conf` contains exactly the current default gateway declared by
+  the `default_gateway` resolver policy;
 - only TCP port 22 listens in the diagnostic images;
 - the DMZ image additionally requires TCP/80, the `nginx` process, and the
   expected synthetic HTTP response;

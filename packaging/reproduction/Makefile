@@ -4,6 +4,7 @@ COMPROMISED_IOT_COUNT ?= 3
 GNS3_SERVER_CONFIG ?= $(HOME)/.config/GNS3/2.2/gns3_server.conf
 QEMU_PATH ?= /usr/bin/qemu-system-x86_64
 IOT_INTERFACE ?= docker0
+MGMT_INTERFACE ?= byot-mgmt
 PFSENSE_CONFIG ?= config/pfsense-public.xml
 PFSENSE_CONFIG_IMAGE ?= artifacts/pfsense-config.img
 PFSENSE_INSTALLER_ARCHIVE ?= downloads/netgate-installer-v1.2-RELEASE-amd64.iso.gz
@@ -51,9 +52,9 @@ templates: validate prepare-images verify-images docker-images pfsense-config-dr
 	GNS3_SERVER_CONFIG="$(GNS3_SERVER_CONFIG)" QEMU_PATH="$(QEMU_PATH)" $(PYTHON) src/create_templates.py
 
 topology: validate
-	GNS3_SERVER_CONFIG="$(GNS3_SERVER_CONFIG)" IOT_INTERFACE="$(IOT_INTERFACE)" $(PYTHON) src/create_topology.py --project-name "$(PROJECT_NAME)" --compromised-iot-count "$(COMPROMISED_IOT_COUNT)"
+	GNS3_SERVER_CONFIG="$(GNS3_SERVER_CONFIG)" IOT_INTERFACE="$(IOT_INTERFACE)" MGMT_INTERFACE="$(MGMT_INTERFACE)" $(PYTHON) src/create_topology.py --project-name "$(PROJECT_NAME)" --compromised-iot-count "$(COMPROMISED_IOT_COUNT)"
 
 smoke-test: validate
-	GNS3_SERVER_CONFIG="$(GNS3_SERVER_CONFIG)" IOT_INTERFACE="$(IOT_INTERFACE)" COMPROMISED_IOT_COUNT="$(COMPROMISED_IOT_COUNT)" $(PYTHON) src/smoke_test.py
+	GNS3_SERVER_CONFIG="$(GNS3_SERVER_CONFIG)" IOT_INTERFACE="$(IOT_INTERFACE)" MGMT_INTERFACE="$(MGMT_INTERFACE)" COMPROMISED_IOT_COUNT="$(COMPROMISED_IOT_COUNT)" $(PYTHON) src/smoke_test.py
 
 reproduce: templates topology

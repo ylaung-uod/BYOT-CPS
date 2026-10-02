@@ -13,10 +13,11 @@ The default topology contains:
 - 9 Ubuntu Docker containers
 - 4 Ethernet switches
 - 1 NAT node
-- 1 host-interface cloud node
-- 16 nodes and 15 links in total
+- 2 host-interface cloud nodes
+- 17 nodes and 16 links in total
 
-The compromised-IoT pool defaults to three containers. For a pool of `N` containers, the generated topology contains `13 + N` nodes and `12 + N` links.
+The compromised-IoT pool defaults to three containers. For a pool of `N`
+containers, the generated topology contains `14 + N` nodes and `13 + N` links.
 
 ## 2. Prepare a fresh Ubuntu 24.04 host
 
@@ -226,10 +227,36 @@ byot-cps - Ubuntu 24.04 Nginx Web Server
 
 Template reconciliation is idempotent: matching templates are left unchanged,
 and stale same-name BYOT-CPS templates are updated to the declared payload.
-The Nginx template starts both SSH on TCP/22 and HTTP on TCP/80 whenever the
-`DMZ-WEB-SERVER` container starts.
+The Nginx template starts SSH on TCP/22 and HTTP on TCP/80 after the
+`DMZ-WEB-SERVER` container receives its default route and installs DNS.
 
 ## 7. Run the automated smoke test
+
+First create the dedicated host-only TAP used by the `HOST-ACCESS` cloud node.
+The address is outside the management DHCP pool:
+
+```bash
+sudo ip tuntap add dev byot-mgmt mode tap user "$USER"
+sudo ip addr add 192.168.99.2/24 dev byot-mgmt
+sudo ip link set byot-mgmt up
+```
+
+The TAP is connected only to `MGMT-SWITCH` and is not bridged to a physical or
+production interface. It disappears at reboot unless configured separately as
+a persistent host interface.
+
+The TAP still makes the Ubuntu host a participant on the management subnet.
+The public pfSense policy blocks new DMZ/CPS connections toward management, but
+`MGMT-ADMIN` shares the same Layer-2 segment and can address host services
+directly. Apply a host firewall rule before starting untrusted lab nodes. For an
+Ubuntu host already managed by UFW:
+
+```bash
+sudo ufw deny in on byot-mgmt
+```
+
+UFW remains stateful, so replies to browser connections initiated by the host
+are allowed. Use an equivalent input rule if the host uses another firewall.
 
 ```bash
 make smoke-test
@@ -261,6 +288,7 @@ If no project named `byot-cps` exists:
 
 ```bash
 IOT_INTERFACE=docker0 \
+MGMT_INTERFACE=byot-mgmt \
 COMPROMISED_IOT_COUNT=3 \
 make topology
 ```
@@ -270,6 +298,7 @@ The default project name is `byot-cps`. The builder refuses to overwrite an exis
 ```bash
 PROJECT_NAME=byot-cps-demo \
 IOT_INTERFACE=docker0 \
+MGMT_INTERFACE=byot-mgmt \
 COMPROMISED_IOT_COUNT=3 \
 make topology
 ```
@@ -279,6 +308,7 @@ For ten compromised-IoT nodes:
 ```bash
 PROJECT_NAME=byot-cps-10 \
 IOT_INTERFACE=docker0 \
+MGMT_INTERFACE=byot-mgmt \
 COMPROMISED_IOT_COUNT=10 \
 make topology
 ```
@@ -289,7 +319,7 @@ Open the generated project and confirm the network roles:
 
 ```text
 ISP -- WAN-SWITCH -- FIREWALL
-       |            |-- MGMT-SWITCH -- MGMT-ADMIN
+       |            |-- MGMT-SWITCH -- MGMT-ADMIN, HOST-ACCESS
        |            |-- DMZ-SWITCH  -- DMZ-WEB-SERVER
        |            `-- CPS-SWITCH  -- CPS-OPERATOR, IoT,
        |                                RED-TEAM-HOST,
@@ -330,6 +360,10 @@ OPT1 = em2 = 172.20.0.1/24
 OPT2 = em3 = 10.0.0.1/24
 ```
 
+The public configuration enables the pfSense Unbound DNS Resolver on LAN,
+OPT1, and OPT2, with WAN as its outgoing interface. Each internal segment can
+therefore use its own pfSense gateway address as its DNS server.
+
 The configuration enables DHCP pools on the internal segments:
 
 | Segment | DHCP range |
@@ -337,6 +371,13 @@ The configuration enables DHCP pools on the internal segments:
 | Management | `192.168.99.5`–`192.168.99.100` |
 | DMZ | `172.20.0.5`–`172.20.0.100` |
 | CPS | `10.0.0.5`–`10.0.0.100` |
+
+After pfSense boots with the restored configuration, open its WebGUI from the
+Ubuntu host at `https://192.168.99.1/`. The self-signed lab certificate produces
+an expected browser warning. Log in with the dummy `admin` / `admin` credential.
+The `HOST-ACCESS` cloud is physically attached only to management; routed access
+to other segments is still governed by pfSense and the host routing table. No
+Cloud node is attached to `DMZ-SWITCH`.
 
 ## 12. Start the Docker containers
 
@@ -365,14 +406,67 @@ sudo ip link set eth0 up
 sudo ip route replace default via 172.20.0.1
 ```
 
-After assigning that address, verify the automatically started Nginx service
-from a reachable peer:
+Each container entrypoint waits for a default route, then replaces
+`/etc/resolv.conf` with that route's gateway. After setting the route, allow up
+to two seconds and verify DNS:
+
+```bash
+sleep 2
+cat /etc/resolv.conf
+getent hosts example.com
+```
+
+For `DMZ-WEB-SERVER`, the resolver should be `172.20.0.1`; management and CPS
+containers should show `192.168.99.1` and `10.0.0.1`, respectively. The
+entrypoint performs this once per container start, after the route appears.
+
+After assigning the address and route, verify the entrypoint-started Nginx
+service from a reachable peer:
 
 ```bash
 curl http://172.20.0.201/
 ```
 
 The response contains `BYOT-CPS DMZ web server`.
+
+### Open the DMZ web server from the host browser
+
+The host reaches the DMZ through pfSense; `HOST-ACCESS` remains connected only
+to `MGMT-SWITCH`. No DMZ Cloud node or pfSense port-forward rule is required.
+
+1. Confirm that pfSense and `DMZ-WEB-SERVER` are running and that the server has
+   the `172.20.0.201/24` address and `172.20.0.1` default gateway configured
+   above.
+2. On the Ubuntu host, confirm that the management TAP can reach pfSense:
+
+   ```bash
+   ping -c 3 192.168.99.1
+   ```
+
+3. Add a host route for the DMZ through the pfSense management address:
+
+   ```bash
+   sudo ip route replace 172.20.0.0/24 \
+     via 192.168.99.1 dev byot-mgmt
+   ```
+
+4. Confirm the selected route and retrieve the synthetic landing page:
+
+   ```bash
+   ip route get 172.20.0.201
+   curl --fail http://172.20.0.201/
+   ```
+
+5. Open `http://172.20.0.201/` in a browser on the Ubuntu host. The traffic path
+   is `byot-mgmt` → `HOST-ACCESS` → `MGMT-SWITCH` → pfSense → `DMZ-SWITCH` →
+   `DMZ-WEB-SERVER`.
+
+The host route is temporary. Remove it when host-to-DMZ access is no longer
+needed:
+
+```bash
+sudo ip route del 172.20.0.0/24 via 192.168.99.1 dev byot-mgmt
+```
 
 On a CPS container, choose a unique address outside the configured DHCP pool, for example:
 
@@ -469,6 +563,20 @@ ip link show <interface-name>
 ```
 
 Then regenerate with the correct `IOT_INTERFACE`.
+
+### The management WebGUI is unreachable
+
+Confirm that the TAP exists on the GNS3 server host and has the expected address:
+
+```bash
+ip link show byot-mgmt
+ip address show dev byot-mgmt
+ping -c 3 192.168.99.1
+curl -k -I https://192.168.99.1/
+```
+
+If a different TAP name is required, create it first and pass the same name as
+`MGMT_INTERFACE` when building the project.
 
 ### SSH is refused
 

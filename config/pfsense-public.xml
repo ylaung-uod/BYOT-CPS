@@ -83,6 +83,11 @@
       <range><from>10.0.0.5</from><to>10.0.0.100</to></range>
     </opt2>
   </dhcpd>
+  <unbound>
+    <enable />
+    <active_interface>lan,opt1,opt2</active_interface>
+    <outgoing_interface>wan</outgoing_interface>
+  </unbound>
   <nat><outbound><mode>automatic</mode></outbound></nat>
   <filter>
     <rule>
@@ -91,9 +96,19 @@
       <source><network>lan</network></source><destination><any /></destination>
     </rule>
     <rule>
+      <type>block</type><interface>opt1</interface><ipprotocol>inet</ipprotocol>
+      <descr>Block DMZ initiated access to management</descr>
+      <source><network>opt1</network></source><destination><network>lan</network></destination>
+    </rule>
+    <rule>
       <type>pass</type><interface>opt1</interface><ipprotocol>inet</ipprotocol>
       <descr>Public lab DMZ outbound</descr>
       <source><network>opt1</network></source><destination><any /></destination>
+    </rule>
+    <rule>
+      <type>block</type><interface>opt2</interface><ipprotocol>inet</ipprotocol>
+      <descr>Block CPS initiated access to management</descr>
+      <source><network>opt2</network></source><destination><network>lan</network></destination>
     </rule>
     <rule>
       <type>pass</type><interface>opt2</interface><ipprotocol>inet</ipprotocol>

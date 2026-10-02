@@ -10,7 +10,7 @@
   "documentDescribes": [
     "SPDXRef-ContainerImage-71270b80711c0b8f"
   ],
-  "documentNamespace": "https://byot-cps.invalid/spdx/ubuntu24-lab/cd359c2415ba67331cccbffbe65d40726ff39608f2c1cecd6cc89750255dfe07",
+  "documentNamespace": "https://byot-cps.invalid/spdx/ubuntu24-lab/d67ea2e8606e353b91c69a03e9e57ddf43ba5ba11a0b499a72b8cddbd258a75d",
   "name": "BYOT-CPS ubuntu24-lab container SBOM",
   "packages": [
     {

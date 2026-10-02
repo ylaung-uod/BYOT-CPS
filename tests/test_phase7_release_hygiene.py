@@ -154,7 +154,7 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
 
     def test_release_metadata_matches_the_snapshot_repository(self):
         notes = (ROOT / "docs" / "RELEASE-NOTES-v1.0.0.md").read_text()
-        self.assertIn("97 unit tests", notes)
+        self.assertIn("110 unit tests", notes)
         self.assertIn("single root snapshot", notes)
         identities = subprocess.run(
             ["git", "log", "--format=%an%x00%ae"],

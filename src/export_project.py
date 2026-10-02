@@ -39,6 +39,29 @@ ROLE_NAMES = {
     "EXTERNAL-PC": "EXTERNAL-CLIENT",
 }
 PORTABLE_NAMES = {**SWITCH_NAMES, **ROLE_NAMES}
+HOST_ACCESS_NODE = {
+    "name": "HOST-ACCESS",
+    "node_type": "cloud",
+    "x": -330,
+    "y": -30,
+    "z": 1,
+    "symbol": ":/symbols/cloud.svg",
+    "properties": {
+        "interfaces": [],
+        "ports_mapping": [
+            {
+                "interface": "${MGMT_INTERFACE}",
+                "name": "${MGMT_INTERFACE}",
+                "port_number": 0,
+                "type": "ethernet",
+            }
+        ],
+        "remote_console_host": "",
+        "remote_console_http_path": "/",
+        "remote_console_port": 23,
+        "remote_console_type": "none",
+    },
+}
 
 def export(source):
     data = json.loads(Path(source).read_text())
@@ -70,6 +93,26 @@ def export(source):
         for end in link["nodes"]:
             ends.append({"node": id_to_name[end["node_id"]], "adapter_number": end["adapter_number"], "port_number": end["port_number"]})
         links.append({"nodes": ends})
+    if any(node["name"] == "MGMT-SWITCH" for node in nodes) and not any(
+        node["name"] == "HOST-ACCESS" for node in nodes
+    ):
+        if any(
+            endpoint["node"] == "MGMT-SWITCH"
+            and endpoint["adapter_number"] == 0
+            and endpoint["port_number"] == 2
+            for link in links
+            for endpoint in link["nodes"]
+        ):
+            raise SystemExit("MGMT-SWITCH port 2 is already used; cannot inject HOST-ACCESS")
+        nodes.append(HOST_ACCESS_NODE)
+        links.append(
+            {
+                "nodes": [
+                    {"node": "HOST-ACCESS", "adapter_number": 0, "port_number": 0},
+                    {"node": "MGMT-SWITCH", "adapter_number": 0, "port_number": 2},
+                ]
+            }
+        )
     project = {key: data[key] for key in ("scene_height", "scene_width", "show_grid", "show_interface_labels", "show_layers", "snap_to_grid")}
     project["name"] = "byot-cps"
     return {"format": 1, "source_project": data["name"], "project": project, "nodes": nodes, "links": links}

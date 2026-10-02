@@ -9,9 +9,10 @@ BYOT-CPS declaratively represents:
 - GNS3 template payloads for the pfSense firewall and Ubuntu-based lab
   containers;
 - Dockerfiles and startup behavior for benign container hosts, including the
-  automatically started Nginx service on `DMZ-WEB-SERVER`;
+  route-gated Nginx service on `DMZ-WEB-SERVER`;
 - a synthetic public pfSense configuration with four declared interfaces,
-  lab-only addresses, DHCP pools, and basic outbound rules;
+  lab-only addresses, DHCP pools, an internal Unbound DNS Resolver, and basic
+  outbound rules;
 - deterministic generation of the pfSense configuration-restore drive; and
 - structural, transformation, and temporary-project smoke tests.
 
@@ -23,6 +24,7 @@ installed package versions, SPDX SBOMs, and runtime policy checks are documented
 in [`CONTAINERS.md`](CONTAINERS.md). The runtime gate verifies the expected
 Ubuntu version and user, password-protected sudo, SSH policy, required tools,
 allowed processes and listeners, and bounded suspicious-file indicators.
+It also requires each container's resolver to equal its current default gateway.
 
 ## What it does not represent
 
@@ -87,5 +89,6 @@ login was confirmed manually. The temporary project, template, configuration
 image, and test VM were removed afterward.
 
 This verification establishes restore, boot, interface addressing, HTTPS
-WebGUI availability, and login. DHCP lease issuance and traffic-policy behavior
-were not exercised in that run and remain separate integration-test targets.
+WebGUI availability, and login. DHCP lease issuance, pfSense-backed DNS resolution,
+and traffic-policy behavior were not exercised in that run and remain separate
+integration-test targets.

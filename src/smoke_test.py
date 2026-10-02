@@ -5,7 +5,7 @@ import time
 from collections import Counter
 from gns3_api import GNS3API
 from gns3_cleanup import delete_project_and_confirm
-from create_topology import build
+from create_topology import build, host_access_matches
 
 
 def require(condition, message):
@@ -22,19 +22,24 @@ try:
     nodes = api.get(f"/projects/{pid}/nodes")
     links = api.get(f"/projects/{pid}/links")
     require(
-        len(nodes) == 13 + compromised_iot_count
-        and len(links) == 12 + compromised_iot_count,
+        len(nodes) == 14 + compromised_iot_count
+        and len(links) == 13 + compromised_iot_count,
         f"unexpected topology size: nodes={len(nodes)} links={len(links)}",
     )
     counts = Counter(node["node_type"] for node in nodes)
     expected_counts = {
-        "cloud": 1,
+        "cloud": 2,
         "docker": 6 + compromised_iot_count,
         "ethernet_switch": 4,
         "nat": 1,
         "qemu": 1,
     }
     require(counts == expected_counts, f"unexpected node type counts: {counts}")
+    management_interface = os.environ.get("MGMT_INTERFACE", "byot-mgmt")
+    require(
+        host_access_matches(nodes, links, management_interface),
+        f"HOST-ACCESS does not exactly use {management_interface!r} on MGMT-SWITCH port 2",
+    )
     firewall = next(node for node in nodes if node["name"] == "FIREWALL")
     require(
         firewall["properties"]["hdb_disk_image"] == "pfsense-config.img",

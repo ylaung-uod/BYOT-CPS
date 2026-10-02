@@ -88,6 +88,48 @@ class PhaseFourReproducibilityTests(unittest.TestCase):
         self.assertTrue(any("listener" in error for error in errors))
         self.assertTrue(any("suspicious" in error for error in errors))
 
+    def test_all_container_declarations_require_default_gateway_dns(self):
+        manifest = json.loads((ROOT / "container_images.json").read_text())
+        self.assertTrue(manifest["images"])
+        for declaration in manifest["images"]:
+            with self.subTest(image=declaration["image"]):
+                self.assertEqual(declaration.get("resolver_policy"), "default_gateway")
+
+    def test_runtime_probe_requires_default_gateway_as_resolver(self):
+        from test_container_images import validate_probe
+
+        declaration = {
+            "ubuntu_version": "24.04",
+            "default_user": "lab",
+            "required_group": "sudo",
+            "required_tools": ["ip", "sshd", "sudo"],
+            "allowed_listeners": ["tcp:22"],
+            "allowed_processes": ["sleep", "sshd"],
+            "resolver_policy": "default_gateway",
+        }
+        probe = {
+            "ubuntu_version": "24.04",
+            "pid1_user": "lab",
+            "groups": ["lab", "sudo"],
+            "sudo_without_password": False,
+            "sudo_with_password": True,
+            "ssh": {
+                "passwordauthentication": "yes",
+                "permitrootlogin": "no",
+                "usepam": "yes",
+            },
+            "tools": {name: True for name in declaration["required_tools"]},
+            "listeners": ["tcp:22"],
+            "processes": ["sleep", "sshd"],
+            "default_gateway": "172.17.0.1",
+            "resolvers": ["127.0.0.11"],
+            "suspicious_files": [],
+        }
+        errors = validate_probe(declaration, probe)
+        self.assertTrue(any("resolver" in error for error in errors))
+        probe["resolvers"] = [probe["default_gateway"]]
+        self.assertEqual(validate_probe(declaration, probe), [])
+
     def test_runtime_probe_requires_declared_nginx_service(self):
         from test_container_images import validate_probe
 

@@ -239,6 +239,18 @@ class ContainerBotTemplateTests(unittest.TestCase):
         for key in ("ubuntu18_lab", "ubuntu24_lab", "ubuntu24_web"):
             usage = self.templates[key]["payload"]["usage"]
             self.assertIn("lab / lab", usage)
+    def test_all_container_entrypoints_install_default_gateway_as_resolver(self):
+        for version in ("ubuntu18-lab", "ubuntu24-lab", "ubuntu24-nginx"):
+            with self.subTest(version=version):
+                entrypoint = (ROOT / f"Dockerfiles/{version}/entrypoint.sh").read_text()
+                self.assertIn("install_gateway_dns", entrypoint)
+                self.assertIn("ip -4 route get 1.1.1.1", entrypoint)
+                self.assertIn("Waiting for default route before starting services", entrypoint)
+                self.assertIn("nameserver %s", entrypoint)
+                self.assertIn("> /etc/resolv.conf", entrypoint)
+                self.assertIn("\ninstall_gateway_dns\n", entrypoint)
+                self.assertNotIn("install_gateway_dns &", entrypoint)
+
     def test_all_container_images_run_password_authenticated_ssh(self):
         for version in ("ubuntu18-lab", "ubuntu24-lab", "ubuntu24-nginx"):
             with self.subTest(version=version):

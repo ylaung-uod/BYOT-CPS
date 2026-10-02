@@ -19,11 +19,12 @@ template back after creation or update.
 
 ## Default topology
 
-The default project has 16 nodes and 15 links:
+The default project has 17 nodes and 16 links:
 
 ```text
-                                      +-- MGMT-ADMIN
-                                      |
+                             +-- MGMT-ADMIN
+                             +-- HOST-ACCESS (host TAP)
+                             |
 ISP -- WAN-SWITCH -- FIREWALL -- MGMT-SWITCH
          |                |
          |                +-- DMZ-SWITCH -- DMZ-WEB-SERVER
@@ -47,7 +48,7 @@ declared `DMZ-WEB-SERVER` image starts a benign Nginx service on TCP/80.
 | Segment | pfSense adapter | Firewall address | Switch | Attached roles |
 |---|---:|---|---|---|
 | WAN | `em0` / adapter 0 | DHCP | `WAN-SWITCH` | `ISP`, `EXTERNAL-CLIENT`, `C2-SIMULATOR` |
-| Management | `em1` / adapter 1 | `192.168.99.1/24` | `MGMT-SWITCH` | `MGMT-ADMIN` |
+| Management | `em1` / adapter 1 | `192.168.99.1/24` | `MGMT-SWITCH` | `MGMT-ADMIN`, `HOST-ACCESS` |
 | DMZ | `em2` / adapter 2 | `172.20.0.1/24` | `DMZ-SWITCH` | `DMZ-WEB-SERVER` |
 | CPS | `em3` / adapter 3 | `10.0.0.1/24` | `CPS-SWITCH` | `CPS-OPERATOR`, `IoT`, `RED-TEAM-HOST`, compromised-IoT pool |
 
@@ -55,6 +56,11 @@ The public firewall configuration enables DHCP pools `.5` through `.100` on
 the three internal segments. Container addresses are not configured
 persistently; the clean-clone procedure in [`../QUICKSTART.md`](../QUICKSTART.md)
 shows temporary examples outside those pools.
+
+The same configuration enables Unbound on the three internal pfSense
+interfaces and uses WAN for recursive lookups. Container entrypoints wait for a
+default route and then use that segment's pfSense gateway as their sole DNS
+resolver.
 
 ## Exact default links
 
@@ -66,6 +72,7 @@ shows temporary examples outside those pools.
 | `FIREWALL` adapter 2 (`em2`) | `DMZ-SWITCH` port 0 |
 | `FIREWALL` adapter 3 (`em3`) | `CPS-SWITCH` port 0 |
 | `MGMT-ADMIN` adapter 0 | `MGMT-SWITCH` port 1 |
+| `HOST-ACCESS` port 0 | `MGMT-SWITCH` port 2 |
 | `CPS-OPERATOR` adapter 0 | `CPS-SWITCH` port 1 |
 | `EXTERNAL-CLIENT` adapter 0 | `WAN-SWITCH` port 2 |
 | `IoT` port 0 | `CPS-SWITCH` port 2 |
@@ -74,8 +81,8 @@ shows temporary examples outside those pools.
 | `C2-SIMULATOR` adapter 0 | `WAN-SWITCH` port 3 |
 | `RED-TEAM-HOST` adapter 0 | `CPS-SWITCH` port `N+3` |
 
-For `N` compromised-IoT containers, the generated project contains `13 + N`
-nodes and `12 + N` links. `N=0` is valid. Node names and switch-port assignment
+For `N` compromised-IoT containers, the generated project contains `14 + N`
+nodes and `13 + N` links. `N=0` is valid. Node names and switch-port assignment
 remain deterministic.
 
 ## Host-interface boundary
@@ -86,6 +93,11 @@ Linux systems. A physical interface may be selected explicitly, but doing so
 bridges host traffic into the experimental CPS segment. Never select a
 production, management, or Internet-facing interface without reviewing the
 firewall policy and accepting that exposure.
+
+The `HOST-ACCESS` cloud resolves `${MGMT_INTERFACE}` (default `byot-mgmt`) and
+connects only to `MGMT-SWITCH`. Assigning the host TAP `192.168.99.2/24` gives
+the host browser access to the pfSense WebGUI at `https://192.168.99.1/`
+without connecting a host interface directly to the DMZ.
 
 ## Build flow
 

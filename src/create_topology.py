@@ -9,9 +9,53 @@ from topology_transform import materialize_compromised_iot_count
 
 ROOT = Path(__file__).resolve().parents[1]
 
+
+def host_access_matches(nodes, links, interface):
+    host_nodes = [node for node in nodes if node.get("name") == "HOST-ACCESS"]
+    management_nodes = [node for node in nodes if node.get("name") == "MGMT-SWITCH"]
+    if len(host_nodes) != 1 or len(management_nodes) != 1:
+        return False
+    host_access = host_nodes[0]
+    management_switch = management_nodes[0]
+    mappings = host_access.get("properties", {}).get("ports_mapping", [])
+    if len(mappings) != 1:
+        return False
+    mapping = mappings[0]
+    if not (
+        mapping.get("interface") == interface
+        and mapping.get("name") == interface
+        and mapping.get("port_number") == 0
+        and mapping.get("type") == "ethernet"
+    ):
+        return False
+    host_id = host_access.get("node_id")
+    management_id = management_switch.get("node_id")
+    host_links = [
+        link for link in links
+        if any(endpoint.get("node_id") == host_id for endpoint in link.get("nodes", []))
+    ]
+    if len(host_links) != 1:
+        return False
+    endpoints = {
+        (
+            endpoint.get("node_id"),
+            endpoint.get("adapter_number"),
+            endpoint.get("port_number"),
+        )
+        for endpoint in host_links[0].get("nodes", [])
+    }
+    return endpoints == {
+        (host_id, 0, 0),
+        (management_id, 0, 2),
+    }
+
+
 def resolve(value):
     if isinstance(value, str):
-        return value.replace("${IOT_INTERFACE}", os.environ.get("IOT_INTERFACE", "docker0"))
+        return (
+            value.replace("${IOT_INTERFACE}", os.environ.get("IOT_INTERFACE", "docker0"))
+            .replace("${MGMT_INTERFACE}", os.environ.get("MGMT_INTERFACE", "byot-mgmt"))
+        )
     if isinstance(value, list):
         return [resolve(v) for v in value]
     if isinstance(value, dict):

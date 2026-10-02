@@ -184,6 +184,52 @@ class PfSenseConfigTests(unittest.TestCase):
             address = root.findtext(f"./interfaces/{name}/ipaddr")
             self.assertTrue(ipaddress.ip_address(address).is_private, (name, address))
 
+    def test_public_configuration_blocks_internal_initiation_to_management(self):
+        root = ET.parse(ROOT / "config" / "pfsense-public.xml").getroot()
+        rules = root.findall("./filter/rule")
+        for interface in ("opt1", "opt2"):
+            with self.subTest(interface=interface):
+                block_index = next(
+                    index
+                    for index, rule in enumerate(rules)
+                    if rule.findtext("type") == "block"
+                    and rule.findtext("interface") == interface
+                    and rule.findtext("destination/network") == "lan"
+                )
+                pass_index = next(
+                    index
+                    for index, rule in enumerate(rules)
+                    if rule.findtext("type") == "pass"
+                    and rule.findtext("interface") == interface
+                )
+                self.assertLess(block_index, pass_index)
+
+    def test_public_configuration_rejects_missing_management_isolation_rule(self):
+        public_xml = (ROOT / "config" / "pfsense-public.xml").read_text()
+        changed = public_xml.replace(
+            "<type>block</type><interface>opt1</interface>",
+            "<type>pass</type><interface>opt1</interface>",
+            1,
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            path = self.write_config(directory, changed)
+            original = pfsense_config.PUBLIC_CONFIG_PATH
+            pfsense_config.PUBLIC_CONFIG_PATH = path
+            try:
+                with self.assertRaisesRegex(ConfigError, "management isolation"):
+                    validate_config(path)
+            finally:
+                pfsense_config.PUBLIC_CONFIG_PATH = original
+
+    def test_public_configuration_enables_dns_resolver_on_internal_interfaces(self):
+        root = ET.parse(ROOT / "config" / "pfsense-public.xml").getroot()
+        unbound = root.find("unbound")
+        if unbound is None:
+            self.fail("public configuration has no DNS Resolver declaration")
+        self.assertIsNotNone(unbound.find("enable"))
+        self.assertEqual(unbound.findtext("active_interface"), "lan,opt1,opt2")
+        self.assertEqual(unbound.findtext("outgoing_interface"), "wan")
+
     def test_public_configuration_does_not_enable_plaintext_web_management(self):
         root = __import__("xml.etree.ElementTree", fromlist=["ElementTree"]).parse(
             ROOT / "config" / "pfsense-public.xml"

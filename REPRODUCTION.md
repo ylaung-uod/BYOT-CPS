@@ -8,7 +8,8 @@ of this end-user package.
 ## Reproduction boundary
 
 The bundle recreates the declarative topology, GNS3 templates, pinned Ubuntu
-containers, public pfSense configuration media, and physical-interface boundary.
+containers, public pfSense configuration media, internal DNS behavior, and
+physical-interface boundary.
 It does not include the Netgate installer, proprietary media, original VM
 overlays, mutable guest state, private experimental data, credentials, captures,
 or operational attack payloads.
@@ -70,13 +71,15 @@ Important configurable variables include:
 - `PFSENSE_INSTALLER_ARCHIVE`
 - `QEMU_PATH`
 - `IOT_INTERFACE`
+- `MGMT_INTERFACE`
 - `PROJECT_NAME`
 - `COMPROMISED_IOT_COUNT`
 - `PFSENSE_CONFIG`
 
-The default topology contains 16 nodes and 15 links, including three
-compromised-IoT role containers. For a pool size `N`, it contains `13 + N` nodes
-and `12 + N` links.
+The default topology contains 17 nodes and 16 links, including three
+compromised-IoT role containers. For a pool size `N`, it contains `14 + N` nodes
+and `13 + N` links. A dedicated `${MGMT_INTERFACE}` cloud connects only to
+`MGMT-SWITCH` for host access to the pfSense WebGUI.
 
 ## Optional container verification
 
@@ -86,6 +89,10 @@ policy, including the DMZ Nginx HTTP response:
 ```bash
 make phase4-verify
 ```
+
+The runtime policy also verifies that every container entrypoint replaces the
+Docker resolver with its current default gateway. In the GNS3 topology, that
+gateway is the pfSense interface on the container's segment.
 
 See [container reproducibility](docs/CONTAINERS.md),
 [architecture](docs/ARCHITECTURE.md), and the

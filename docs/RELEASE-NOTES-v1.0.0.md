@@ -4,7 +4,9 @@
 
 This release reproduces the declared GNS3 topology, benign Ubuntu Docker hosts,
 pfSense installation shape and interface mapping, and the synthetic public
-pfSense configuration. It excludes original VM overlays, mutable guest state,
+pfSense configuration. The baseline enables internal Unbound DNS, and each
+container entrypoint selects its segment gateway as resolver. It excludes
+original VM overlays, mutable guest state,
 operational malware, production credentials, certificates, private host
 configuration, proprietary guest content, and vendor installer media.
 
@@ -38,8 +40,8 @@ started QEMU process alone does not prove installation or configuration restore.
 
 ## Verification results
 
-On 2026-09-04, the staged v1.0.0 candidate passed `make release-check` with
-97 unit tests, syntax and static analysis, secret and Dockerfile scans, three
+On 2026-10-02, the staged v1.0.0 candidate passed `make release-check` with
+110 unit tests, syntax and static analysis, secret and Dockerfile scans, three
 container builds, deterministic SBOM comparison, runtime policy assertions, and
 inspection of all 78 source-archive files. The deterministic minimal
 reproduction archive contains 47 files required by end users; development tests
@@ -48,11 +50,11 @@ repository is private, the self-referential v1.0.0 release URL is excluded
 from anonymous link checking and is instead verified through the GitHub API when
 the release is created. The remaining 58 links passed.
 
-The same candidate passed `IOT_INTERFACE=docker0 make live-release-check` for
-compromised-IoT counts 0, 1, 3, and 10. Every temporary project was read back,
-started, deleted, and confirmed absent. Exact-commit hosted CI and a clean-clone
-check remain mandatory before tagging. The hosted run URL and verified commit
-identifier belong in the GitHub release record.
+An earlier baseline passed `IOT_INTERFACE=docker0 make live-release-check` for
+compromised-IoT counts 0, 1, 3, and 10. The staged HOST-ACCESS and DNS changes
+have not yet received a live GNS3/pfSense DNS test. That live gate, exact-commit
+hosted CI, and a clean-clone check remain mandatory before tagging. The hosted
+run URL and verified commit identifier belong in the GitHub release record.
 
 ## Repository history
 

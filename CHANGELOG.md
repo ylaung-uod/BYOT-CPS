@@ -57,7 +57,8 @@ versioning.
 ### Added
 
 - Pinned Ubuntu package snapshots, deterministic container credentials, tracked
-  SPDX SBOMs, and runtime policy tests for both lab images.
+  SPDX SBOMs, and runtime policy tests for all three lab images, including
+  default-gateway DNS selection.
 - Reproducible public pfSense-drive extraction and semantic comparison tests.
 
 ## [0.16.0] - 2026-09-03

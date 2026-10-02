@@ -18,8 +18,15 @@ The configuration drive follows Netgate's Configuration Restore / External Confi
 
 The default build uses `config/pfsense-public.xml`. It is a synthetic baseline
 containing the documented lab interfaces, DHCP pools, basic outbound rules,
-and the dummy `admin` / `admin` credential. It contains no source firewall
-policy, certificates, private keys, or production identifiers.
+the Unbound DNS Resolver, and the dummy `admin` / `admin` credential. Unbound
+listens on LAN, OPT1, and OPT2 and uses WAN for recursive queries. The public
+configuration contains no source firewall policy, certificates, private keys,
+or production identifiers.
+
+The public rules allow management-initiated outbound traffic but block new DMZ
+and CPS connections toward the management network before their general outbound
+pass rules. This protects routed management hosts; peers on the management
+switch remain on the same Layer-2 segment and require host-side firewalling.
 
 For a private deployment, override the default explicitly:
 

@@ -23,7 +23,10 @@ DUMMY_ADMIN_USERNAME = "admin"
 DUMMY_ADMIN_PASSWORD = "admin"
 DUMMY_ADMIN_BCRYPT_HASH = "$2b$12$gqP5oxCfMSSnYRlvOEfngO1sFra5J/.TSYfTx/31h0gMUmgCmVlTO"
 PUBLIC_ALLOWED_CHILDREN = {
-    ("pfsense",): {"version", "system", "interfaces", "dhcpd", "nat", "filter", "revision"},
+    ("pfsense",): {
+        "version", "system", "interfaces", "dhcpd", "unbound", "nat", "filter",
+        "revision",
+    },
     ("pfsense", "system"): {
         "hostname", "domain", "timezone", "language", "webgui", "group",
         "user", "nextuid", "nextgid",
@@ -37,6 +40,7 @@ PUBLIC_ALLOWED_CHILDREN = {
     },
     ("pfsense", "interfaces"): {"wan", "lan", "opt1", "opt2"},
     ("pfsense", "dhcpd"): {"lan", "opt1", "opt2"},
+    ("pfsense", "unbound"): {"enable", "active_interface", "outgoing_interface"},
     ("pfsense", "nat"): {"outbound"},
     ("pfsense", "nat", "outbound"): {"mode"},
     ("pfsense", "filter"): {"rule"},
@@ -44,7 +48,7 @@ PUBLIC_ALLOWED_CHILDREN = {
         "type", "interface", "ipprotocol", "descr", "source", "destination",
     },
     ("pfsense", "filter", "rule", "source"): {"network"},
-    ("pfsense", "filter", "rule", "destination"): {"any"},
+    ("pfsense", "filter", "rule", "destination"): {"any", "network"},
     ("pfsense", "revision"): {"description", "username"},
 }
 for _interface in ("wan", "lan", "opt1", "opt2"):
@@ -103,6 +107,37 @@ def _validate_public_config(root):
         raise ConfigError("public configuration must contain exactly one dummy administrator")
     if administrators[0].findtext("bcrypt-hash") != DUMMY_ADMIN_BCRYPT_HASH:
         raise ConfigError("public configuration must use the dummy administrator password hash")
+    unbound = root.find("./unbound")
+    if unbound is None or unbound.find("enable") is None:
+        raise ConfigError("public configuration must enable the DNS Resolver")
+    if unbound.findtext("active_interface") != "lan,opt1,opt2":
+        raise ConfigError("public DNS Resolver must listen on lan,opt1,opt2")
+    if unbound.findtext("outgoing_interface") != "wan":
+        raise ConfigError("public DNS Resolver must use the WAN outgoing interface")
+    rules = root.findall("./filter/rule")
+    for interface in ("opt1", "opt2"):
+        block_indices = [
+            index
+            for index, rule in enumerate(rules)
+            if rule.findtext("type") == "block"
+            and rule.findtext("interface") == interface
+            and rule.findtext("source/network") == interface
+            and rule.findtext("destination/network") == "lan"
+        ]
+        pass_indices = [
+            index
+            for index, rule in enumerate(rules)
+            if rule.findtext("type") == "pass"
+            and rule.findtext("interface") == interface
+        ]
+        if (
+            len(block_indices) != 1
+            or not pass_indices
+            or block_indices[0] > min(pass_indices)
+        ):
+            raise ConfigError(
+                f"public configuration must enforce {interface} management isolation"
+            )
 
 
 def validate_config(path):
