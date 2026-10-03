@@ -1,9 +1,10 @@
 # BYOT-CPS v1.0.0 reproduction bundle
 
 This bundle contains the files needed to recreate the safety-bounded BYOT-CPS
-GNS3 topology. Development tests, hosted-CI configuration, contribution files,
-and maintainer release records remain in the source repository and are not part
-of this end-user package.
+GNS3 topology. It includes contribution guidance and release verification records
+so package scope and validation history can be audited. Development tests,
+hosted-CI configuration, and maintainer quality-tool implementations remain in
+the source repository and are not part of this end-user package.
 
 ## Reproduction boundary
 

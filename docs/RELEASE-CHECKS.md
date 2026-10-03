@@ -61,11 +61,12 @@ make reproduction-archive
 
 The generated `dist/byot-cps-v1.0.0-reproduction.tar.gz` contains only the
 declared topology and template inputs, runtime builders, required documentation,
-licenses, citation metadata, and SBOMs. It deliberately excludes development
-tests, CI configuration, maintainer quality tools, and release-process records.
-The release test builds it twice to enforce byte reproducibility, checks the
-exact allowlist and embedded `REPRODUCTION-MANIFEST.sha256`, then runs the
-extracted bundle's `make validate` and `make pfsense-config-validate` targets.
+release verification records, licenses, citation metadata, and SBOMs. It
+deliberately excludes development tests, CI configuration, and maintainer
+quality-tool implementations. The release test builds it twice to enforce byte
+reproducibility, checks the exact allowlist and embedded
+`REPRODUCTION-MANIFEST.sha256`, then runs the extracted bundle's `make validate`
+and `make pfsense-config-validate` targets.
 Attach this bundle—not the larger source archive—as the end-user release asset.
 
 ## Live GNS3 maintainer check

@@ -48,8 +48,16 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             "verified commit",
             "GitHub release record",
             "GitHub API",
+            "release verification records",
         ):
             self.assertIn(expected, checks)
+        self.assertNotIn("release-process records", checks)
+
+        reproduction = (ROOT / "REPRODUCTION.md").read_text()
+        self.assertIn("contribution guidance", reproduction)
+        self.assertIn("release verification records", reproduction)
+        self.assertNotIn("contribution files", reproduction)
+        self.assertNotIn("maintainer release records remain", reproduction)
 
         expected = {
             "CHANGELOG.md",
@@ -158,7 +166,7 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
 
     def test_release_metadata_matches_the_snapshot_repository(self):
         notes = (ROOT / "docs" / "RELEASE-NOTES-v1.0.0.md").read_text()
-        self.assertIn("110 unit tests", notes)
+        self.assertIn("111 unit tests", notes)
         self.assertIn("single root snapshot", notes)
         identities = subprocess.run(
             ["git", "log", "--format=%an%x00%ae"],

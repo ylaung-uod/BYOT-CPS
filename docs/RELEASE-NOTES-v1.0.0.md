@@ -40,8 +40,8 @@ started QEMU process alone does not prove installation or configuration restore.
 
 ## Verification results
 
-On 2026-10-02, the staged v1.0.0 candidate passed `make release-check` with
-110 unit tests, syntax and static analysis, secret and Dockerfile scans, three
+On 2026-10-03, the staged v1.0.0 candidate passed `make release-check` with
+111 unit tests, syntax and static analysis, secret and Dockerfile scans, three
 container builds, deterministic SBOM comparison, runtime policy assertions, and
 inspection of all 77 source-archive files. The deterministic minimal
 reproduction archive contains 51 files required by end users; development tests
@@ -50,11 +50,15 @@ repository is private, the self-referential v1.0.0 release URL is excluded
 from anonymous link checking and is instead verified through the GitHub API when
 the release is created. The remaining 58 links passed.
 
-An earlier baseline passed `IOT_INTERFACE=docker0 make live-release-check` for
-compromised-IoT counts 0, 1, 3, and 10. The staged HOST-ACCESS and DNS changes
-have not yet received a live GNS3/pfSense DNS test. That live gate, exact-commit
-hosted CI, and a clean-clone check remain mandatory before tagging. The hosted
-run URL and verified commit identifier belong in the GitHub release record.
+On 2026-10-03, `IOT_INTERFACE=docker0 make live-release-check` passed for
+compromised-IoT counts 0, 1, 3, and 10 with no temporary projects left behind.
+It verified template reconciliation, the exact HOST-ACCESS attachment, pfSense
+configuration-drive metadata, node and link counts, and started-node status. The
+automated gate does not complete the interactive pfSense installation or issue
+an end-to-end DNS query through a booted firewall, so those remain documented
+limitations. Exact-commit hosted CI and a clean-clone check remain mandatory
+before tagging. The hosted run URL and verified commit identifier belong in the
+GitHub release record.
 
 ## Repository history
 

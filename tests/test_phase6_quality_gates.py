@@ -4,6 +4,7 @@ import re
 import subprocess
 import sys
 import tarfile
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -287,6 +288,20 @@ class PhaseSixQualityGateTests(unittest.TestCase):
         self.assertGreater(check_data(ROOT), 0)
         self.assertGreater(check_markdown(ROOT), 0)
         self.assertGreater(check_python(ROOT), 0)
+
+    def test_local_quality_gates_fail_when_a_tracked_path_is_missing(self):
+        from src.quality_gates import QualityGateError, repository_files
+
+        with tempfile.TemporaryDirectory() as temporary:
+            repository = Path(temporary)
+            subprocess.run(["git", "init", "-q"], cwd=repository, check=True)
+            tracked = repository / "tracked.md"
+            tracked.write_text("tracked\n")
+            subprocess.run(["git", "add", "tracked.md"], cwd=repository, check=True)
+            tracked.unlink()
+
+            with self.assertRaisesRegex(QualityGateError, "missing tracked path: tracked.md"):
+                repository_files(repository)
 
     def test_runtime_gates_do_not_use_optimization_sensitive_assertions(self):
         offenders = {}

@@ -25,11 +25,19 @@ def repository_files(root):
         capture_output=True,
     )
     paths = []
+    missing = []
     for encoded in result.stdout.split(b"\0"):
         if encoded:
-            path = root / encoded.decode("utf-8", "surrogateescape")
-            if path.exists():
+            relative = encoded.decode("utf-8", "surrogateescape")
+            path = root / relative
+            if not path.exists():
+                missing.append(relative)
+            else:
                 paths.append(path)
+    if missing:
+        raise QualityGateError(
+            "missing tracked path: " + ", ".join(sorted(missing))
+        )
     return paths
 
 
