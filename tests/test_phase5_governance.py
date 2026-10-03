@@ -8,11 +8,15 @@ ROOT = Path(__file__).resolve().parents[1]
 class PhaseFiveGovernanceTests(unittest.TestCase):
     def test_documentation_has_the_phase_five_reader_structure(self):
         readme = (ROOT / "README.md").read_text()
-        for heading in ("Purpose", "Safety boundary", "Architecture", "Quick demonstration"):
+        for heading in (
+            "Purpose",
+            "Safety boundary",
+            "Architecture",
+            "Installation and operation guide",
+        ):
             with self.subTest(heading=heading):
                 self.assertRegex(readme, rf"(?m)^## {re.escape(heading)}$")
         for path in (
-            "QUICKSTART.md",
             "docs/ARCHITECTURE.md",
             "docs/REPRODUCIBILITY.md",
             "docs/ARTIFACTS.md",
@@ -21,14 +25,14 @@ class PhaseFiveGovernanceTests(unittest.TestCase):
             with self.subTest(path=path):
                 self.assertIn(f"]({path})", readme)
                 self.assertTrue((ROOT / path).is_file())
-        quickstart = (ROOT / "QUICKSTART.md").read_text()
+        installation_guide = (ROOT / "README.md").read_text()
         self.assertIn(
             "git clone https://github.com/ylaung-uod/BYOT-CPS.git byot-cps",
-            quickstart,
+            installation_guide,
         )
-        self.assertIn("make prepare-images", quickstart)
-        self.assertIn("make templates", quickstart)
-        self.assertIn("make smoke-test", quickstart)
+        self.assertIn("make prepare-images", installation_guide)
+        self.assertIn("make templates", installation_guide)
+        self.assertIn("make smoke-test", installation_guide)
 
     def test_standard_public_project_files_are_present_and_actionable(self):
         required = (

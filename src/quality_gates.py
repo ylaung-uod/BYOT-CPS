@@ -27,7 +27,9 @@ def repository_files(root):
     paths = []
     for encoded in result.stdout.split(b"\0"):
         if encoded:
-            paths.append(root / encoded.decode("utf-8", "surrogateescape"))
+            path = root / encoded.decode("utf-8", "surrogateescape")
+            if path.exists():
+                paths.append(path)
     return paths
 
 

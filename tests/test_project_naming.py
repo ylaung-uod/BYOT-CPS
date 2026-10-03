@@ -35,14 +35,14 @@ class ProjectNamingTests(unittest.TestCase):
 
     def test_public_metadata_has_no_developer_home_path(self):
         private_prefix = "/home/" + "yll"
-        for relative in ("README.md", "QUICKSTART.md", "Makefile", "provenance.json"):
+        for relative in ("README.md", "Makefile", "provenance.json"):
             self.assertNotIn(private_prefix, (ROOT / relative).read_text(), relative)
 
-    def test_quickstart_requires_an_explicit_private_source_for_refresh(self):
-        quickstart = (ROOT / "QUICKSTART.md").read_text()
+    def test_readme_requires_an_explicit_private_source_for_refresh(self):
+        readme = (ROOT / "README.md").read_text()
         self.assertIn(
             "make refresh-spec SOURCE_PROJECT=/path/to/project/project.gns3",
-            quickstart,
+            readme,
         )
 
     def test_topology_uses_role_based_switch_names(self):

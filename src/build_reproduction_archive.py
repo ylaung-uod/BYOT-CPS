@@ -14,7 +14,9 @@ VERSION = "1.0.0"
 ARCHIVE_ROOT = f"byot-cps-v{VERSION}"
 
 SOURCE_FILES = {
+    "CHANGELOG.md": "CHANGELOG.md",
     "CITATION.cff": "CITATION.cff",
+    "CONTRIBUTING.md": "CONTRIBUTING.md",
     "Dockerfiles/ubuntu18-lab/Dockerfile": "Dockerfiles/ubuntu18-lab/Dockerfile",
     "Dockerfiles/ubuntu18-lab/entrypoint.sh": "Dockerfiles/ubuntu18-lab/entrypoint.sh",
     "Dockerfiles/ubuntu18-lab/isrg-root-x1.pem": "Dockerfiles/ubuntu18-lab/isrg-root-x1.pem",
@@ -27,8 +29,8 @@ SOURCE_FILES = {
     "LICENSE": "LICENSE",
     "packaging/reproduction/Makefile": "Makefile",
     "NOTICE.md": "NOTICE.md",
-    "QUICKSTART.md": "QUICKSTART.md",
-    "REPRODUCTION.md": "README.md",
+    "README.md": "README.md",
+    "REPRODUCTION.md": "REPRODUCTION.md",
     "SECURITY.md": "SECURITY.md",
     "config/pfsense-public.xml": "config/pfsense-public.xml",
     "container_images.json": "container_images.json",
@@ -36,6 +38,8 @@ SOURCE_FILES = {
     "docs/ARTIFACTS.md": "docs/ARTIFACTS.md",
     "docs/CONTAINERS.md": "docs/CONTAINERS.md",
     "docs/REPRODUCIBILITY.md": "docs/REPRODUCIBILITY.md",
+    "docs/RELEASE-CHECKS.md": "docs/RELEASE-CHECKS.md",
+    "docs/RELEASE-NOTES-v1.0.0.md": "docs/RELEASE-NOTES-v1.0.0.md",
     "docs/SECURITY-BOUNDARY.md": "docs/SECURITY-BOUNDARY.md",
     "gns3_templates.json": "gns3_templates.json",
     "images.json": "images.json",

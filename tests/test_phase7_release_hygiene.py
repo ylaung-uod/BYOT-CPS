@@ -52,7 +52,9 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             self.assertIn(expected, checks)
 
         expected = {
+            "CHANGELOG.md",
             "CITATION.cff",
+            "CONTRIBUTING.md",
             "Dockerfiles/ubuntu18-lab/Dockerfile",
             "Dockerfiles/ubuntu18-lab/entrypoint.sh",
             "Dockerfiles/ubuntu18-lab/isrg-root-x1.pem",
@@ -65,8 +67,8 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             "LICENSE",
             "Makefile",
             "NOTICE.md",
-            "QUICKSTART.md",
             "README.md",
+            "REPRODUCTION.md",
             "REPRODUCTION-MANIFEST.sha256",
             "SECURITY.md",
             "config/pfsense-public.xml",
@@ -75,6 +77,8 @@ class PhaseSevenReleaseHygieneTests(unittest.TestCase):
             "docs/ARTIFACTS.md",
             "docs/CONTAINERS.md",
             "docs/REPRODUCIBILITY.md",
+            "docs/RELEASE-CHECKS.md",
+            "docs/RELEASE-NOTES-v1.0.0.md",
             "docs/SECURITY-BOUNDARY.md",
             "gns3_templates.json",
             "images.json",

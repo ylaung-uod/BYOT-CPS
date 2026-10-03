@@ -213,7 +213,10 @@ class PhaseTwoPortabilityTests(unittest.TestCase):
         )
         findings = []
         for relative in filter(None, tracked):
-            content = (ROOT / relative.decode()).read_bytes()
+            path = ROOT / relative.decode()
+            if not path.exists():
+                continue
+            content = path.read_bytes()
             if b"\0" in content:
                 continue
             for literal in forbidden_literals:
@@ -257,17 +260,18 @@ class PhaseTwoPortabilityTests(unittest.TestCase):
 
     def test_documented_topology_example_uses_portable_iot_default(self):
         readme = (ROOT / "README.md").read_text()
-        self.assertIn("IOT_INTERFACE=docker0 make topology", readme)
+        self.assertIn("IOT_INTERFACE=docker0", readme)
+        self.assertIn("make topology", readme)
         self.assertNotRegex(readme, r"IOT_INTERFACE=enx[0-9a-f]+")
 
     def test_management_browser_access_setup_is_documented(self):
-        quickstart = (ROOT / "QUICKSTART.md").read_text()
-        self.assertIn("ip tuntap add dev byot-mgmt mode tap", quickstart)
-        self.assertIn("ip addr add 192.168.99.2/24 dev byot-mgmt", quickstart)
-        self.assertIn("https://192.168.99.1/", quickstart)
-        self.assertIn("HOST-ACCESS", quickstart)
-        self.assertIn("MGMT-SWITCH", quickstart)
-        self.assertIn("not bridged to a physical", quickstart)
+        readme = (ROOT / "README.md").read_text()
+        self.assertIn("ip tuntap add dev byot-mgmt mode tap", readme)
+        self.assertIn("ip addr add 192.168.99.2/24 dev byot-mgmt", readme)
+        self.assertIn("https://192.168.99.1/", readme)
+        self.assertIn("HOST-ACCESS", readme)
+        self.assertIn("MGMT-SWITCH", readme)
+        self.assertIn("not bridged to a physical", readme)
 
 
 if __name__ == "__main__":

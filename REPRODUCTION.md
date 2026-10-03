@@ -32,8 +32,9 @@ make pfsense-config-validate
 
 The tested baseline uses Linux, GNS3 2.2.55, Docker, QEMU/KVM, Python 3.10 or
 newer, GNU Make, `qemu-img`, `sfdisk`, `mkfs.vfat`, and mtools. Docker must work
-without `sudo`. See the [complete quick-start](QUICKSTART.md) for installation
-commands and troubleshooting.
+without `sudo`. See the
+[installation and operation guide](README.md#installation-and-operation-guide)
+for installation commands and troubleshooting.
 
 ## Acquire the external installer
 

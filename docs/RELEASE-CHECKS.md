@@ -73,7 +73,7 @@ Attach this bundle—not the larger source archive—as the end-user release ass
 The live gate is intentionally separate because a public hosted runner does not
 have the installer, QEMU image directory, Docker/GNS3 integration, or an isolated
 host interface. Run it on an isolated maintainer host or dedicated self-hosted
-runner that satisfies `QUICKSTART.md`:
+runner that satisfies the `README.md` installation guide:
 
 ```bash
 IOT_INTERFACE=docker0 make live-release-check

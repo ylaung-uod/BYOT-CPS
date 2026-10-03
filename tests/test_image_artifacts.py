@@ -233,7 +233,6 @@ class ImageArtifactTests(unittest.TestCase):
             (ROOT / path).read_text()
             for path in (
                 "README.md",
-                "QUICKSTART.md",
                 "docs/ARTIFACTS.md",
                 "images/README.md",
                 "pfsense/README.md",

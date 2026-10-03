@@ -54,7 +54,8 @@ declared `DMZ-WEB-SERVER` image starts a benign Nginx service on TCP/80.
 
 The public firewall configuration enables DHCP pools `.5` through `.100` on
 the three internal segments. Container addresses are not configured
-persistently; the clean-clone procedure in [`../QUICKSTART.md`](../QUICKSTART.md)
+persistently; the clean-clone procedure in the
+[`README.md` installation guide](../README.md#installation-and-operation-guide)
 shows temporary examples outside those pools.
 
 The same configuration enables Unbound on the three internal pfSense
